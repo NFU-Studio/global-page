@@ -1,14 +1,12 @@
 ---
-import {
-  buttonVariants,
-  type ButtonVariantProps,
-} from "@/component-variants/button";
+import { buttonVariants } from "@/components/ui/button";
 import type { HTMLTag, Polymorphic } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
 const buttonTags = ["button", "a"] satisfies HTMLTag[];
 type ButtonTag = (typeof buttonTags)[number];
 
 type Props<Tag extends ButtonTag = "button"> = Polymorphic<{ as: Tag }> &
-  ButtonVariantProps;
+  VariantProps<typeof buttonVariants>;
 
 const {
   as: Tag = "button",

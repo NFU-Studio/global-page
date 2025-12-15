@@ -1,8 +1,9 @@
 ---
+import AppHeader from "@/layouts/AppHeader.astro";
 import { getLocale } from "@/paraglide/runtime";
 import "@/styles/global.css";
 const lang = getLocale();
-const dir = "rtl";
+const dir = "ltr";
 ---
 
 <html {lang} {dir}>
@@ -13,7 +14,8 @@ const dir = "rtl";
     <meta name="generator" content={Astro.generator} />
     <slot name="head" />
   </head>
-  <body>
+  <body class="">
+    <AppHeader />
     <slot />
   </body>
 </html>

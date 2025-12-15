@@ -1,0 +1,81 @@
+---
+import Logo from "@/assets/svgs/logo.svg";
+import { DropdownNav } from "@/components/features/dropdown-nav";
+import LanguageSwitcher from "@/components/features/LanguageSwitcher.astro";
+import { MobileDropdownNav } from "@/components/features/mobile-dropdown-nav";
+import Button from "@/components/ui/Button.astro";
+import { navData } from "@/data/nav";
+import { localizeHref } from "@/paraglide/runtime";
+---
+
+<header
+  data-slot="app-header"
+  class="flex justify-between text-black z-50 lg:grid lg:grid-cols-[1fr_10fr_1fr] px-rws h-32 place-items-center-safe fixed left-0 top-0 w-full">
+  <a href={localizeHref("/")}>
+    <Logo class="h-8" />
+    <span class="sr-only">Strona główna</span>
+  </a>
+  <nav class="hidden lg:contents">
+    <ul class="flex items-center gap-8 w-fit">
+      {
+        navData.map(({ unlocalizedHref, title, children }) =>
+          children ? (
+            <DropdownNav client:idle />
+          ) : (
+            <li>
+              <Button variant={"link"} as="a" href={unlocalizedHref}>
+                {title}
+              </Button>
+            </li>
+          ),
+        )
+      }
+    </ul>
+    <LanguageSwitcher />
+  </nav>
+  <div class="lg:hidden">
+    <MobileDropdownNav client:visible />
+  </div>
+</header>
+
+<style>
+  header[data-slot="app-header"] {
+    view-transition-name: "APP_HEADER";
+  }
+</style>
+
+<script>
+  function main() {
+    const h = document.querySelector(
+      "header[data-slot='app-header']",
+    ) as HTMLDivElement;
+    const darkies = document.querySelectorAll("[data-invert-header]");
+
+    let intersectingCount = 0;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            intersectingCount++;
+          } else {
+            intersectingCount--;
+          }
+        }
+
+        if (intersectingCount > 0) {
+          h.classList.add("invert");
+        } else {
+          h.classList.remove("invert");
+        }
+      },
+      {
+        rootMargin: `-${h.offsetHeight}px 0px 0px 0px`,
+        threshold: 0,
+      },
+    );
+
+    darkies.forEach((el) => observer.observe(el));
+  }
+  main();
+</script>

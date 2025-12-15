@@ -1,0 +1,25 @@
+:root {
+  --rws: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --rws: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --rws: 4rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  :root {
+    --rws: 4.5rem;
+  }
+}
+
+@utility cover-img {
+  @apply absolute inset-0 object-cover size-full;
+}

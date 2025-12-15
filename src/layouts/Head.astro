@@ -1,4 +1,6 @@
 ---
+import { Font } from "astro:assets";
+
 export interface Props {
   title: string;
   description: string;
@@ -7,9 +9,9 @@ export interface Props {
   image?: string;
 }
 
-const themeColor = "unset";
-const colorScheme = "unset";
-const sitename = "unset";
+const themeColor = "#032164";
+const colorScheme = "light";
+const sitename = "GLOBAL - Biuro rachunkowe";
 
 if ([themeColor, colorScheme, sitename].includes("unset"))
   throw new Error("\n ❌ SET DATA IN `Head.astro`!");
@@ -50,4 +52,5 @@ const canonical = Astro.site
 
 <slot />
 <!-- <ClientRouter /> -->
-<!-- <Font /> -->
+<Font cssVariable="--font-manrope" preload />
+<Font cssVariable="--font-syne" />

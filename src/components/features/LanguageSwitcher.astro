@@ -1,0 +1,46 @@
+---
+import { buttonVariants } from "@/component-variants/button";
+import { getLocale, locales, localizeUrl } from "@/paraglide/runtime";
+function ensureClosingSlash(url: string) {
+  return url.endsWith("/") ? url : `${url}/`;
+}
+---
+
+<div id="language-select">
+  {
+    locales
+      .filter((l) => getLocale() !== l)
+      .map((locale) => (
+        <a
+          class:list={[buttonVariants({ variant: "none" }), "uppercase"]}
+          hreflang={locale}
+          href={localizeUrl(ensureClosingSlash(Astro.url.toString()), {
+            locale,
+          })}>
+          {locale}
+          <span class="sr-only">{locale}</span>
+        </a>
+        // <span style={`top: ${48 * (i+1)}px`} class="absolute left-8 z-9999 text-red-500">{Astro.url}, {deLocalizeUrl(Astro.url)}, {localizeUrl(Astro.url, {locale})}</span>
+      ))
+  }
+</div>
+
+<script>
+  import { localizeUrl, setLocale } from "@/paraglide/runtime";
+  const main = () => {
+    const links = document.querySelectorAll(
+      "#language-select > a",
+    ) as NodeListOf<HTMLAnchorElement>;
+    for (const link of links) {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        setLocale(link.hreflang as "pl");
+        const url = localizeUrl(window.location.href, {
+          locale: link.hreflang,
+        });
+        window.location.href = url.toString();
+      });
+    }
+  };
+  main();
+</script>
