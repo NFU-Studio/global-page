@@ -1,0 +1,31 @@
+{
+  "name": "starter",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "clean": "bun run ./scripts/clean.ts",
+    "try-update": "bun run ./scripts/try-update.ts"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "@biomejs/biome": "^2.3.8",
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/bun": "^1.3.4",
+    "astro": "^5.16.5",
+    "class-variance-authority": "^0.7.1",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "prettier": "^3.7.4",
+    "prettier-plugin-astro": "^0.14.1",
+    "@inlang/paraglide-js": "2.7.0"
+  },
+  "trustedDependencies": [
+    "@tailwindcss/oxide",
+    "core-js"
+  ]
+}

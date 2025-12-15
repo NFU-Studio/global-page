@@ -1,0 +1,19 @@
+---
+import { getLocale } from "@/paraglide/runtime";
+import "@/styles/global.css";
+const lang = getLocale();
+const dir = "rtl";
+---
+
+<html {lang} {dir}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,34 @@
+---
+import type { TypographyVariantProps } from "@/component-variants/typography";
+import { typographyVariants } from "@/component-variants/typography";
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+const typographyTags = [
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "p",
+  "span",
+  "li",
+] satisfies HTMLTag[];
+type TypographyTag = (typeof typographyTags)[number];
+
+type Props<Tag extends TypographyTag = "p"> = Polymorphic<{ as: Tag }> &
+  TypographyVariantProps;
+
+const {
+  as: Tag = "p",
+  variant,
+  mw,
+  color,
+  class: className,
+  ...props
+} = Astro.props;
+---
+
+<Tag
+  class:list={[typographyVariants({ variant, mw, color }), className]}
+  {...props}>
+  <slot />
+</Tag>

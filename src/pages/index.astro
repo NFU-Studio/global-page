@@ -1,0 +1,10 @@
+---
+import Head from "@/layouts/Head.astro";
+import RootLayout from "@/layouts/RootLayout.astro";
+import { m } from "@/paraglide/messages";
+---
+
+<RootLayout>
+  <Head slot={"head"} title="index" description="index" />
+  <h1 class="text-4xl">Template {m.example_message({ username: "NFU" })}</h1>
+</RootLayout>
