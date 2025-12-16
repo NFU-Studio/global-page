@@ -9,11 +9,11 @@ import { ArrowRight } from "lucide-react";
 
 <section
   data-invert-header
-  class="h-auto lg:h-svh text-background pt-32 grid size-full lg:grid-rows-[4fr_1fr]">
+  class="h-auto lg:h-screen text-background pt-32 grid size-full lg:grid-rows-[4fr_1fr] relative">
   <Image
     src={heroImg}
     alt=""
-    class="cover-img h-96 lg:h-full z-0"
+    class="cover-img h-96 lg:h-screen z-0"
     sizes="100vw"
     widths={[300, 450, 600, 900, 1200, 1600, 1920]}
     fetchpriority={"high"}
@@ -23,7 +23,7 @@ import { ArrowRight } from "lucide-react";
     class="h-[50svh]! absolute w-full z-5 bg-foreground/45 mask-t-from-25% backdrop-blur-sm hidden lg:block lg:bottom-0!">
   </div>
   <div
-    class="cover-img lg:h-full h-[50svh] z-1 bg-linear-0 from-accent to-foreground opacity-60">
+    class="cover-img lg:h-screen h-[50svh] z-1 bg-linear-0 from-accent to-foreground opacity-60">
   </div>
   <!--  -->
   <div
@@ -72,10 +72,3 @@ import { ArrowRight } from "lucide-react";
     </div>
   </div>
 </section>
-<section class="h-96"></section>
-<div class="grid place-items-center h-96 p-rws gap-4">
-  <div>
-    <label for="h">Help</label>
-    <input id="h" class="border" />
-  </div>
-</div>

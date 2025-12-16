@@ -13,6 +13,7 @@ import { localizeHref } from "@/paraglide/runtime";
   class:list={[
     "flex isolate justify-between text-black z-50 lg:grid lg:grid-cols-[1fr_10fr_1fr]",
     "px-rws h-32 place-items-center-safe fixed left-0 top-0 w-full",
+    "data-[scrolled='true']:bg-background/15 data-[scrolled='true']:backdrop-blur-md",
   ]}>
   <a href={localizeHref("/")}>
     <Logo class="h-8" />
@@ -46,6 +47,20 @@ import { localizeHref } from "@/paraglide/runtime";
     view-transition-name: "APP_HEADER";
   }
 </style>
+
+<script>
+  import { scroll } from "motion";
+
+  (() => {
+    const ah = document.querySelector(
+      "header[data-slot='app-header']",
+    ) as HTMLDivElement;
+    scroll((progress, info) => {
+      const isLower = info.y.current > window.innerHeight;
+      ah.dataset.scrolled = isLower + "";
+    });
+  })();
+</script>
 
 <script>
   function main() {

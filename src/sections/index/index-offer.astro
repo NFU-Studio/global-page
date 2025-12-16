@@ -1,0 +1,44 @@
+---
+import { AnimatedAccodrionish } from "@/components/ui/animated-accordionish";
+import Typography from "@/components/ui/Typography.astro";
+---
+
+<section class="p-rws">
+  <header class="space-y-5 p-rws">
+    <Typography variant="h2">
+      Współpraca Skrojona na Miarę Twoich Potrzeb
+    </Typography>
+    <Typography mw="h" class={"text-balance"}>
+      Rozumiemy, że każde przedsiębiorstwo jest unikalne. Dlatego nasze usługi
+      księgowe i doradcze są elastycznie dopasowywane do specyfiki Twojej
+      branży, wielkości firmy oraz indywidualnych wymagań prawnych i
+      podatkowych. Wybierz poniżej interesujący Cię obszar, aby zobaczyć
+      szczegółowy zakres wsparcia, jakie możemy Ci zaoferować.
+    </Typography>
+  </header>
+  <AnimatedAccodrionish client:visible />
+</section>
+
+<!-- <script>
+  import { animate, hover } from "motion";
+  function main() {
+    const ul = document.querySelector(
+      "ul[data-service-list]",
+    ) as HTMLUListElement;
+    hover(ul.querySelectorAll("&>li"), (li) => {
+      animate(li.querySelectorAll("[data-service-list-appear]"), {
+        display: "flex",
+        opacity: 1,
+        height: "auto",
+      });
+      return () => {
+        animate(li.querySelectorAll("[data-service-list-appear]"), {
+          display: "none",
+          opacity: 0,
+          height: 0,
+        });
+      };
+    });
+  }
+  main();
+</script> -->
