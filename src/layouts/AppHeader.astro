@@ -11,7 +11,7 @@ import { localizeHref } from "@/paraglide/runtime";
 <header
   data-slot="app-header"
   class:list={[
-    "flex justify-between text-black z-50 lg:grid lg:grid-cols-[1fr_10fr_1fr]",
+    "flex isolate justify-between text-black z-50 lg:grid lg:grid-cols-[1fr_10fr_1fr]",
     "px-rws h-32 place-items-center-safe fixed left-0 top-0 w-full",
   ]}>
   <a href={localizeHref("/")}>
@@ -23,7 +23,7 @@ import { localizeHref } from "@/paraglide/runtime";
       {
         navData.map(({ unlocalizedHref, title, children }) =>
           children ? (
-            <DropdownNav client:idle />
+            <DropdownNav client:only="react" />
           ) : (
             <li>
               <Button variant={"link"} as="a" href={unlocalizedHref}>
@@ -37,7 +37,7 @@ import { localizeHref } from "@/paraglide/runtime";
     <LanguageSwitcher />
   </nav>
   <div class="lg:hidden">
-    <MobileDropdownNav client:visible />
+    <MobileDropdownNav client:only="react" />
   </div>
 </header>
 
