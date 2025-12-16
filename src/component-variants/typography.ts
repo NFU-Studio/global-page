@@ -4,7 +4,7 @@ export const typographyVariants = cva("", {
   variants: {
     variant: {
       body: "text-sm text-foreground/80 in-data-[inverted=true]:text-background/80",
-      headline: "font-display font-bold text-6xl 2xl:text-8xl",
+      headline: "font-display font-bold text-2xl lg:text-6xl 2xl:text-8xl",
     },
     mw: {
       full: "max-w-full",

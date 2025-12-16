@@ -9,29 +9,34 @@ import { ArrowRight } from "lucide-react";
 
 <section
   data-invert-header
-  class="h-screen text-background pt-32 grid size-full">
+  class="h-screen text-background pt-32 grid size-full lg:grid-rows-[4fr_1fr]">
   <Image
     src={heroImg}
     alt=""
-    class="cover-img z-0"
+    class="cover-img h-1/2 lg:h-full z-0"
     sizes="100vw"
     widths={[300, 450, 600, 900, 1200, 1600, 1920]}
     fetchpriority={"high"}
     loading={"eager"}
   />
   <div
-    class="h-[50lvh]! absolute w-full z-5 bg-foreground/45 mask-t-from-25% backdrop-blur-sm bottom-0!">
+    class="h-[50lvh]! absolute w-full z-5 bg-foreground/45 mask-t-from-25% backdrop-blur-sm hidden lg:block lg:bottom-0!">
   </div>
-  <div class="cover-img z-1 bg-linear-0 from-accent to-foreground opacity-60">
+  <div
+    class="cover-img lg:h-full h-1/2 z-1 bg-linear-0 from-accent to-foreground opacity-60">
   </div>
   <!--  -->
   <div
     data-inverted="true"
-    class="relative h-full grid place-items-center text-background z-10">
-    <div class="flex flex-col items-center justify-center gap-8">
+    class:list={[
+      "relative lg:place-self-center rounded-lg grid place-items-center",
+      "text-background z-10 lg:bg-transparent bg-accent mx-4 p-5 h-fit",
+      "",
+    ]}>
+    <div class="flex flex-col items-center justify-center gap-6 lg:gap-8">
       <Typography variant={"headline"} class="text-center leading-tight">
         Rzetelny <span
-          class="underline decoration-accent underline-offset-12 decoration-8">
+          class="underline lg:decoration-accent lg:underline-offset-12 underline-offset-6 decoration-4 lg:decoration-8">
           fundament
         </span>
         <br /> Twojej firmy
@@ -40,11 +45,18 @@ import { ArrowRight } from "lucide-react";
         Łączymy profesjonalną wiedzę ekspercką z nowoczesną organizacją pracy.
         Zapewniamy bezpieczeństwo i spokój finansowy Twojego biznesu.
       </Typography>
-      <Button size="lg" as="a" href="/oferta/">
+      <Button
+        size="lg"
+        as="a"
+        href="/oferta/"
+        class={"bg-background! text-foreground! lg:bg-foreground! lg:text-background!"}>
         Sprawdź naszą ofertę <ArrowRight />
       </Button>
     </div>
-    <div class="flex gap-2 flex-wrap">
+  </div>
+  <div
+    class="order-first lg:order-last h-fit mt-auto flex items-end justify-center z-10 p-rws">
+    <div class="flex gap-2 flex-wrap items-center justify-center">
       {
         [
           "Obsługa księgowa",

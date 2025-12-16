@@ -16,18 +16,8 @@ export const MobileDropdownNav = () => {
   return (
     <DropdownMenu onOpenChange={setOpen} open={open}>
       <DropdownMenuTrigger asChild>
-        <Button>
-          {open ? (
-            <>
-              <X />
-              Zamknij
-            </>
-          ) : (
-            <>
-              <Menu />
-              Menu
-            </>
-          )}
+        <Button size="icon-lg" variant={open ? "default" : "ghost"}>
+          {open ? <X /> : <Menu />}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent

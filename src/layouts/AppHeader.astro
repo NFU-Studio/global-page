@@ -10,7 +10,10 @@ import { localizeHref } from "@/paraglide/runtime";
 
 <header
   data-slot="app-header"
-  class="flex justify-between text-black z-50 lg:grid lg:grid-cols-[1fr_10fr_1fr] px-rws h-32 place-items-center-safe fixed left-0 top-0 w-full">
+  class:list={[
+    "flex justify-between text-black z-50 lg:grid lg:grid-cols-[1fr_10fr_1fr]",
+    "px-rws h-32 place-items-center-safe fixed left-0 top-0 w-full",
+  ]}>
   <a href={localizeHref("/")}>
     <Logo class="h-8" />
     <span class="sr-only">Strona główna</span>
