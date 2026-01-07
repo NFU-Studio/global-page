@@ -12,71 +12,67 @@ import { typographyVariants } from "@/component-variants/typography";
 import { Button } from "@/components/ui/button";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { cn } from "@/lib/utils";
-
+import * as m from "@/paraglide/messages";
 const services = [
   {
     id: 1,
-    category: "Obsługa Księgowa",
-    title: "Pełna Księgowość & KPiR",
+    category: m.extra_short_shad_grow(),
+    title: m.ok_full_bison_leap(),
     items: [
-      "Księgi Handlowe",
-      "KPiR oraz Ryczałt",
-      "Kadry i płace",
-      "Rachunkowość zarządcza",
-      "Sprawozdania finansowe",
+      m.short_muddy_capybara_aspire(),
+      m.caring_aloof_chipmunk_clap(),
+      m.weak_plain_slug_jump(),
+      m.warm_whole_dove_earn(),
+      m.ideal_sea_butterfly_view(),
     ],
-    description:
-      "Kompleksowe prowadzenie Ksiąg Handlowych, KPiR oraz Ryczałtu. Zapewniamy pełną obsługę kadrowo-płacową i wsparcie w rachunkowości zarządczej. Twoje finanse pod stałą kontrolą ekspertów.",
+    description: m.misty_bold_bullock_spin(),
     icon: File,
-    buttonTextTemplate: "Sprawdź zakres usług",
+    buttonTextTemplate: m.broad_mad_tuna_peek(),
     href: "/oferta/",
   },
   {
     id: 2,
-    category: "Doradztwo Podatkowe",
-    title: "Bezpieczeństwo i Optymalizacja",
+    category: m.polite_nice_bird_assure(),
+    title: m.east_warm_ray_forgive(),
     items: [
-      "Optymalizacja podatkowa",
-      "Opinie prawne",
-      "Interpretacja przepisów",
-      "Minimalizacja ryzyka",
+      m.basic_home_husky_hope(),
+      m.vivid_sharp_pig_boost(),
+      m.clean_smart_ocelot_fulfill(),
+      m.aware_trick_flea_scoop(),
     ],
-    description:
-      "Bezpieczna optymalizacja podatkowa i profesjonalne opinie prawne. Pomagamy interpretować zawiłe przepisy i minimalizować ryzyko fiskalne w Twoim biznesie.",
+    description: m.sour_bright_jackdaw_pet(),
     icon: Compass,
-    buttonTextTemplate: "Dowiedz się więcej",
+    buttonTextTemplate: m.noisy_lost_cat_quiz(),
     href: "/oferta/",
   },
   {
     id: 3,
-    category: "Sprzedaż Gotowych Spółek",
-    title: "Biznes w 24 Godziny",
+    category: m.level_glad_polecat_zoom(),
+    title: m.east_even_millipede_radiate(),
     items: [
-      "Czyste spółki z o.o.",
-      "Komplet NIP, REGON, KRS",
-      "Gwarancja braku zadłużenia",
-      "Szybki start działalności",
+      m.next_sunny_insect_lock(),
+      m.low_sunny_shark_skip(),
+      m.nimble_these_bee_lift(),
+      m.lost_petty_loris_find(),
     ],
-    description:
-      "Rozpocznij działalność w 24 godziny. Oferujemy w pełni zarejestrowane, czyste spółki z o.o. z kompletem numerów NIP, REGON i KRS oraz gwarancją braku zadłużenia.",
+    description: m.these_crazy_koala_loop(),
     icon: Handshake,
-    buttonTextTemplate: "Zobacz ofertę spółek",
+    buttonTextTemplate: m.wide_shy_slug_reap(),
     href: "/oferta/",
   },
   {
     id: 4,
-    category: "Rejestracja Firmy",
-    title: "Wsparcie na Starcie",
+    category: m.watery_spicy_shell_emerge(),
+    title: m.neat_close_mongoose_pout(),
     items: [
-      "Zakładanie JDG",
-      "Rejestracja spółek",
-      "Wybór formy opodatkowania",
-      "Formalności urzędowe",
+      m.bad_minor_squid_fall(),
+      m.fluffy_cozy_jackdaw_endure(),
+      m.calm_home_peacock_advise(),
+      m.stock_broad_macaw_scold(),
     ],
-    description:
-      "Pomagamy przejść przez proces zakładania JDG lub spółki bez stresu. Doradzamy w wyborze formy opodatkowania i załatwiamy formalności w urzędach za Ciebie.",
+    description: m.this_giant_ray_hike(),
     icon: ClipboardCheck, // Suggested new icon for registration
-    buttonTextTemplate: "Otwórz firmę z nami",
+    buttonTextTemplate: m.due_weak_pelican_hug(),
     href: "/oferta/",
   },
 ];
