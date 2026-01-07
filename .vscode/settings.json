@@ -11,5 +11,9 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  // UI Setting:
+  // TypeScript (Native Preview) > Use Tsgo
+  "typescript.experimental.useTsgo": true,
+  "poirot.activeProject": ""
 }

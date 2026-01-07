@@ -23,3 +23,7 @@
 @utility cover-img {
   @apply absolute inset-0 object-cover size-full;
 }
+
+@utility underline-brand {
+  @apply underline lg:decoration-accent lg:underline-offset-12 underline-offset-6 decoration-4 lg:decoration-8;
+}

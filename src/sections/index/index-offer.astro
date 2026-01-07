@@ -1,19 +1,19 @@
 ---
 import { AnimatedAccodrionish } from "@/components/ui/animated-accordionish";
 import Typography from "@/components/ui/Typography.astro";
+import * as m from "@/paraglide/messages";
 ---
 
 <section class="p-rws">
   <header class="space-y-5 p-rws">
+    <h2 class="sr-only">
+      {m.aloof_nice_cockroach_dazzle()}
+    </h2>
     <Typography variant="h2">
-      Współpraca Skrojona na Miarę Twoich Potrzeb
+      {m.caring_tame_ray_sing()}
     </Typography>
     <Typography mw="h" class={"text-balance"}>
-      Rozumiemy, że każde przedsiębiorstwo jest unikalne. Dlatego nasze usługi
-      księgowe i doradcze są elastycznie dopasowywane do specyfiki Twojej
-      branży, wielkości firmy oraz indywidualnych wymagań prawnych i
-      podatkowych. Wybierz poniżej interesujący Cię obszar, aby zobaczyć
-      szczegółowy zakres wsparcia, jakie możemy Ci zaoferować.
+      {m.cozy_upper_oryx_spur()}
     </Typography>
   </header>
   <AnimatedAccodrionish client:visible />

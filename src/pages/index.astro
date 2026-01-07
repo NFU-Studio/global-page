@@ -1,13 +1,18 @@
 ---
 import Head from "@/layouts/Head.astro";
 import RootLayout from "@/layouts/RootLayout.astro";
+import * as m from "@/paraglide/messages";
 import IndexCta from "@/sections/index/index-cta.astro";
 import IndexHero from "@/sections/index/index-hero.astro";
 import IndexOffer from "@/sections/index/index-offer.astro";
 ---
 
 <RootLayout>
-  <Head slot={"head"} title="index" description="index" />
+  <Head
+    slot={"head"}
+    title={m.plain_smug_manatee_chop()}
+    description={m.odd_east_myna_nurture()}
+  />
   <main>
     <IndexHero />
     <IndexOffer />

@@ -3,4 +3,6 @@
 
   --font-sans: var(--font-manrope);
   --font-display: var(--font-syne);
+
+  --default-transition-duration: 350ms;
 }

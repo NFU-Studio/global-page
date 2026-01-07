@@ -1,10 +1,12 @@
 ---
 import heroImg from "@/assets/imgs/hero.jpg";
+import ArrowRightAnim from "@/components/ui/arrow-right-anim.astro";
+
 import { Badge } from "@/components/ui/badge";
 import Button from "@/components/ui/Button.astro";
 import Typography from "@/components/ui/Typography.astro";
+import * as m from "@/paraglide/messages";
 import { Image } from "astro:assets";
-import { ArrowRight } from "lucide-react";
 ---
 
 <section
@@ -34,23 +36,22 @@ import { ArrowRight } from "lucide-react";
       "",
     ]}>
     <div class="flex flex-col items-center justify-center gap-6 lg:gap-8">
-      <Typography variant={"headline"} class="text-center leading-tight">
-        Rzetelny <span
-          class="underline lg:decoration-accent lg:underline-offset-12 underline-offset-6 decoration-4 lg:decoration-8">
-          fundament
-        </span>
-        <br /> Twojej firmy
-      </Typography>
+      <h1 class="sr-only">{m.lost_silly_flea_emerge()}</h1>
+      <Typography
+        variant={"headline"}
+        class="text-center leading-tight"
+        set:html={m.born_super_jellyfish_shine()}
+      />
       <Typography mw="p" class="text-center">
-        Łączymy profesjonalną wiedzę ekspercką z nowoczesną organizacją pracy.
-        Zapewniamy bezpieczeństwo i spokój finansowy Twojego biznesu.
+        {m.wacky_flat_vole_fade()}
       </Typography>
       <Button
         size="lg"
         as="a"
         href="/oferta/"
-        class={"bg-background! text-foreground! lg:bg-foreground! lg:text-background!"}>
-        Sprawdź naszą ofertę <ArrowRight />
+        class={"bg-background! group/arrow text-foreground! lg:bg-foreground! lg:text-background!"}>
+        {m.last_sour_gazelle_stop()}
+        <ArrowRightAnim />
       </Button>
     </div>
   </div>
@@ -59,10 +60,10 @@ import { ArrowRight } from "lucide-react";
     <div class="flex gap-2 flex-wrap items-center justify-center pt-16 lg:p-0">
       {
         [
-          "Obsługa księgowa",
-          "Doradztwo podatkowe",
-          "Sprzedaż gotowych spółek",
-          "Rejestracja firm",
+          m.brief_close_opossum_trim(),
+          m.sleek_polite_newt_quiz(),
+          m.silly_such_herring_ascend(),
+          m.polite_livid_mammoth_breathe(),
         ].map((t) => (
           <Badge variant={"outline"} size="lg" className="text-background">
             {t}
