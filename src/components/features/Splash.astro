@@ -1,0 +1,24 @@
+---
+import Logo from "@/assets/svgs/logo.svg";
+import { SplashBlinds } from "@/components/features/splash-blinds";
+const style = `background-color:#fff;color: #000;
+  position: fixed;
+  inset: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  display: grid;
+  place-content: center;
+  gap: 1em;
+`;
+---
+
+<div
+  id="splash"
+  class=""
+  style={style.replaceAll(" ", "").replaceAll("\n", "")}>
+  <SplashBlinds client:visible />
+  <Logo
+    class={"text-background mix-blend-difference z-10000 h-8 lg:h-16 w-auto"}
+  />
+</div>
