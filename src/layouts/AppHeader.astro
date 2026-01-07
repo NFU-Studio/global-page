@@ -24,11 +24,7 @@ import { localizeHref } from "@/paraglide/runtime";
       {
         navData.map(({ unlocalizedHref, title, children }) =>
           children ? (
-            <DropdownNav
-              title={title}
-              children={children}
-              client:only="react"
-            />
+            <DropdownNav client:only="react" />
           ) : (
             <li>
               <Button variant={"link"} as="a" href={unlocalizedHref}>
