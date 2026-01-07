@@ -1,4 +1,5 @@
-import { Button, buttonVariants } from "@/components/ui/button";
+import { ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -6,24 +7,32 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { cn } from "@/lib/utils";
-import { ChevronDown } from "lucide-react";
+import { navData } from "@/data/nav";
+import { localizeHref } from "@/paraglide/runtime";
 
 export const DropdownNav = () => {
+  // biome-ignore lint/style/noNonNullAssertion: We're pretty sure this will be present
+  const { title, children } = navData.find(
+    (f) => typeof f.children !== "undefined",
+  )!;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant={"link"}>
-          Oferta <ChevronDown />
+          {title()} <ChevronDown />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuGroup>
-          {[{ title: "Usługi księgowe", href: "#" }].map((el) => (
-            <DropdownMenuItem key={`dm-${el.title}`}>
-              <a href={el.href}>{el.title}</a>
-            </DropdownMenuItem>
-          ))}
+          {children?.map(
+            (el) =>
+              el.unlocalizedHref &&
+              !el?.children && (
+                <DropdownMenuItem key={`dm-${el.title}`}>
+                  <a href={localizeHref(el.unlocalizedHref)}>{el.title()}</a>
+                </DropdownMenuItem>
+              ),
+          )}
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
