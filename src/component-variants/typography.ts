@@ -8,6 +8,7 @@ export const typographyVariants = cva("", {
       h2: "font-display font-bold text-xl lg:text-3xl 2xl:text-5xl",
       h2l: "font-display text-xl lg:text-3xl 2xl:text-5xl",
       small: "font-bold text-sm",
+      h3: "font-display text-lg lg:text-xl 2xl:text-3xl",
     },
     mw: {
       full: "max-w-full",

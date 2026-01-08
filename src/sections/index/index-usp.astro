@@ -1,0 +1,52 @@
+---
+import bookmarks from "@/assets/svgs/undraw_bookmarks_i66k.svg";
+import conferenceCall from "@/assets/svgs/undraw_conference-call_ccsp.svg";
+import experts from "@/assets/svgs/undraw_experts_v2vy.svg";
+import upToDate from "@/assets/svgs/undraw_up-to-date_o0j3.svg";
+import Typography from "@/components/ui/Typography.astro";
+const usps = [
+  {
+    svg: experts,
+    h3: "Dedykowany Ekspert",
+    p: "Zawsze rozmawiasz z&nbsp;tą samą osobą, która zna specyfikę Twojej działalności. Brak przekierowań.",
+  },
+  {
+    svg: upToDate,
+    h3: "Bezpieczeństwo i&nbsp;Aktualność",
+    p: "Pełne ubezpieczenie OC i zespół stale monitorujący zmieniające się przepisy. Twoja firma jest zawsze chroniona.",
+  },
+  {
+    svg: conferenceCall,
+    h3: "Elastyczność Komunikacji",
+    p: "Dostosowujemy się do Twoich preferencji: spotkanie w&nbsp;biurze, wideokonferencja, telefon. Wybór należy do Ciebie.",
+  },
+  {
+    svg: bookmarks,
+    h3: "Efektywna Organizacja Pracy",
+    p: "Korzystamy z&nbsp;nowoczesnych narzędzi, aby nasze procesy były szybkie i&nbsp;bezbłędne, niezależnie od formy dokumentów.",
+  },
+];
+---
+
+<section class="p-rws space-y-rws">
+  <header>
+    <Typography as="h2" variant={"h2l"}>
+      Dlaczego warto wybrać nasze biuro rachunkowe?
+    </Typography>
+  </header>
+  <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-12">
+    {
+      usps.map(({ h3, p, svg: Svg }, i) => (
+        <div
+          class:list={[
+            "relative flex p-4 flex-col gap-3 lg:gap-6 items-center text-center",
+            // (i === 0 || i === 3) && "lg:col-span-2",
+          ]}>
+          <Svg class={"w-fit max-h-32 "} />
+          <Typography as="h3" variant="h3" set:html={h3} />
+          <Typography set:html={p} class="mw-sm text-balance" />
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -17,7 +17,7 @@ const style = `background-color:#fff;color: #000;
   id="splash"
   class=""
   style={style.replaceAll(" ", "").replaceAll("\n", "")}>
-  <SplashBlinds client:visible />
+  <SplashBlinds client:only="react" />
   <Logo
     class={"text-background mix-blend-difference z-10000 h-8 lg:h-16 w-auto"}
   />

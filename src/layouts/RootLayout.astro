@@ -2,9 +2,10 @@
 import Splash from "@/components/features/Splash.astro";
 import AppHeader from "@/layouts/AppHeader.astro";
 import { getLocale } from "@/paraglide/runtime";
-import "@/styles/global.css";
+import css from "@/styles/global.css?url";
 const lang = getLocale();
 const dir = "ltr";
+console.log(css);
 ---
 
 <html {lang} {dir}>
@@ -14,6 +15,13 @@ const dir = "ltr";
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <slot name="head" />
+    <link
+      rel="preload"
+      href={css}
+      as="style"
+      fetchpriority="low"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
   </head>
   <body class="">
     <Splash />

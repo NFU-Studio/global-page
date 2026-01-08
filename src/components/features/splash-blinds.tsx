@@ -39,6 +39,9 @@ export const SplashBlinds = () => {
             type: "tween",
             duration: 0.35,
           }}
+          onAnimationComplete={() => {
+            window.dispatchEvent(new Event("splash-out"));
+          }}
           key={`splash-anim-${i + 1}`}
           className="flex-1 bg-background"
         ></motion.div>
