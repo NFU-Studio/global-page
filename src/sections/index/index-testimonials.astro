@@ -1,0 +1,30 @@
+---
+import Typography from "@/components/ui/Typography.astro";
+const testimonials = [
+  "Polecam 100%. Bardzo profesjonalna obsługa.",
+  "Bardzo sprawna obsługa, bałem się zmieniać księgową po 4 latach ale warto było. Odrazu pomogli zmniejszyć podatki.",
+  "Polecam, bardzo dobry kontakt, szczere odpowiedzi, odrazu przedstawiają ceny za wszystkie możliwe dodatkowe usługi w przyszłości. Właściciel bardzo dobrze mi wytłumaczył wszystko przed założeniem spółki.",
+];
+---
+
+<section class="p-rws">
+  <header class="p-rws">
+    <Typography as="h2" variant={"h2"} set:text={"Co mówią o nas klienci?"} />
+  </header>
+  <div class="grid 2xl:grid-cols-3 md:grid-cols-2 gap-rws p-rws">
+    {
+      testimonials.map((text, i) => (
+        <blockquote
+          class:list={[
+            i === 2 && "md:col-span-2 2xl:col-span-1",
+            "bg-muted border [&_span]:text-5xl [&_span]:font-bold [&_span]:text-accent",
+            "flex flex-col justify-center p-4 lg:p-8 rounded-md",
+          ]}>
+          <span>“</span>
+          <Typography as="p" variant={"quote"} set:text={text} />
+          <span class="ml-auto">”</span>
+        </blockquote>
+      ))
+    }
+  </div>
+</section>
