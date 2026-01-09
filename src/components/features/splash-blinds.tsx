@@ -43,7 +43,7 @@ export const SplashBlinds = () => {
             window.dispatchEvent(new Event("splash-out"));
           }}
           key={`splash-anim-${i + 1}`}
-          className="flex-1 bg-background"
+          className="flex-1 bg-background border-y-4 border-background"
         ></motion.div>
       ))}
     </motion.div>
