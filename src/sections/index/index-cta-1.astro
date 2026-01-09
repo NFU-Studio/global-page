@@ -1,0 +1,31 @@
+---
+import Button from "@/components/ui/Button.astro";
+import Typography from "@/components/ui/Typography.astro";
+---
+
+<section
+  data-inverted="true"
+  class:list={[
+    "relative mask-exclude bg-primary isolate text-background",
+    "p-rws relative space-y-8",
+  ]}>
+  <div
+    class="absolute inset-0 pointer-events-none bg-background mask-[url(/favicon.svg)] mask-contain mask-right mask-no-repeat">
+  </div>
+  <header class="">
+    <Typography
+      as="h2"
+      class={"leading-tight font-black tracking-wider text-shadow-lg text-shadow-primary"}
+      variant={"h2"}
+      set:html={"Zacznij współpracę <br/> z pewnym partnerem biznesowym"}
+    />
+  </header>
+  <Typography
+    mw="h"
+    variant={"quote"}
+    set:text={"Masz pytania lub potrzebujesz wyceny? Skontaktuj się z nami - pomożemy dobrać najlepszy zakres usług dla Twojej firmy."}
+  />
+  <Button variant={"secondary"} size="lg" as="a" href="/kontakt/">
+    Skontaktuj się z nami
+  </Button>
+</section>
