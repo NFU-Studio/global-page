@@ -27,17 +27,14 @@ import { Image } from "astro:assets";
       <ArrowRightAnim />
     </Button>
   </div>
-  <div class="relative w-fit max-w-lg mx-auto">
+  <div class="relative w-fit max-w-lg mx-auto *:rounded-md">
     <Image
       src={teamImg}
       alt="PLACEHOLDER"
-      class="object-contain w-fit lg:max-h-[65vh]"
+      class="object-contain [--ppp:1rem] lg:[--ppp:2rem] w-fit lg:max-h-[65vh] drop-shadow-[var(--ppp)_var(--ppp)_0px_var(--color-primary)]"
     />
     <div
       class="absolute z-1 bg-linear-0 from-accent/50 to-primary mask-t-from-0% inset-0">
-    </div>
-    <div
-      class="absolute -z-1 bg-primary size-full -bottom-4 -left-4 lg:-bottom-8 lg:-left-8">
     </div>
   </div>
 </section>
