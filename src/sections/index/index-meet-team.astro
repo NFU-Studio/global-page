@@ -1,0 +1,43 @@
+---
+import teamImg from "@/assets/imgs/team-placeholder.jpg";
+import ArrowRightAnim from "@/components/ui/arrow-right-anim.astro";
+import Button from "@/components/ui/Button.astro";
+import Typography from "@/components/ui/Typography.astro";
+import { Image } from "astro:assets";
+---
+
+<section class="grid p-rws gap-rws lg:grid-cols-2">
+  <div class="grid place-content-center gap-8">
+    <header>
+      <Typography
+        as="h2"
+        variant={"h2"}
+        set:text={"Poznaj ludzi, którzy zadbają o Twoje finanse"}
+      />
+    </header>
+    <Typography
+      mw="p"
+      set:text={"Za Biurem Rachunkowym Global stoją eksperci, dla których rzetelność, terminowość i profesjonalizm są fundamentem współpracy z klientami. Zobacz, kto będzie wspierał rozwój Twojej firmy na co dzień."}
+    />
+    <Button
+      class={"w-fit"}
+      as="a"
+      href="/o-nas/"
+      set:text={"Poznaj nas lepiej"}>
+      <ArrowRightAnim />
+    </Button>
+  </div>
+  <div class="relative w-fit max-w-lg mx-auto">
+    <Image
+      src={teamImg}
+      alt="PLACEHOLDER"
+      class="object-contain w-fit lg:max-h-[65vh]"
+    />
+    <div
+      class="absolute z-1 bg-linear-0 from-accent/50 to-primary mask-t-from-0% inset-0">
+    </div>
+    <div
+      class="absolute -z-1 bg-primary size-full -bottom-4 -left-4 lg:-bottom-8 lg:-left-8">
+    </div>
+  </div>
+</section>
