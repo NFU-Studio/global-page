@@ -1,5 +1,6 @@
 ---
 import Splash from "@/components/features/Splash.astro";
+import AppFooter from "@/layouts/AppFooter.astro";
 import AppHeader from "@/layouts/AppHeader.astro";
 import { getLocale } from "@/paraglide/runtime";
 import css from "@/styles/global.css?url";
@@ -27,6 +28,7 @@ console.log(css);
     <Splash />
     <AppHeader />
     <slot />
+    <AppFooter />
   </body>
   <script src="@/app-scripts/lenis.ts"></script>
 </html>

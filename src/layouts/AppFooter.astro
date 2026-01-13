@@ -1,0 +1,74 @@
+---
+import Logo from "@/assets/svgs/logo.svg";
+import Typography from "@/components/ui/Typography.astro";
+import { addressData } from "@/data/address";
+import { contactData } from "@/data/contact";
+import { navData } from "@/data/nav";
+import { localizeHref } from "@/paraglide/runtime";
+import { Building, Mails } from "lucide-react";
+---
+
+<footer
+  data-inverted="true"
+  class="flex bg-foreground text-background flex-col p-rws gap-rws">
+  <div class="flex flex-col lg:flex-row items-center gap-8">
+    <div>
+      <a href={localizeHref("/")}>
+        <span class="sr-only">HOME PAGE</span>
+        <Logo class="h-12" />
+      </a>
+    </div>
+    <address
+      class="not-italic flex items-center [&_svg]:relative [&_svg]:-right-4 [&_svg]:text-background/80 w-full justify-end gap-8">
+      <Building className="size-8" />
+      <ul>
+        {
+          addressData.map(({ text }) => (
+            <Typography as="li" set:html={text().split(",").join("<br/>")} />
+          ))
+        }
+      </ul>
+      <div class="p-px h-8 bg-muted-foreground"></div>
+      <Mails className="size-8" />
+      <ul>
+        {
+          contactData.map(({ href, text }) => (
+            <Typography as="li">
+              <a {href}>{text}</a>
+            </Typography>
+          ))
+        }
+      </ul>
+    </address>
+  </div>
+  <div class="flex items-center lg:justify-end">
+    <nav>
+      <ul class="lg:text-end space-y-4">
+        {
+          navData.map(
+            ({ title, unlocalizedHref }) =>
+              unlocalizedHref && (
+                <li>
+                  <a href={localizeHref(unlocalizedHref)}>{title()}</a>
+                </li>
+              ),
+          )
+        }
+      </ul>
+    </nav>
+  </div>
+  <div class="flex flex-col gap-8 lg:flex-row lg:justify-between">
+    <Typography class="text-muted-foreground!">
+      {new Date().getFullYear()} © Global Biuro Rachunkowe
+    </Typography>
+    <div class="text-xs font-bold text-muted-foreground">
+      linki do social media
+    </div>
+    <Typography as="p" class="text-muted-foreground!">
+      <span>Wykonane przez</span>
+      <a class="font-black text-background/80" href="https://nfustudio.com"
+        >NFU Studio</a
+      >
+    </Typography>
+  </div>
+</footer>

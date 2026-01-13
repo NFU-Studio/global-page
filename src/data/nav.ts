@@ -4,9 +4,11 @@ type NavEntry = {
   title: () => string;
   unlocalizedHref?: string;
   children?: NavEntry[];
+  isHome?: true;
 };
 
 export const navData: NavEntry[] = [
+  { title: m.simple_born_termite_feel, unlocalizedHref: "/", isHome: true },
   { title: m.equal_elegant_oryx_race, children: [] },
   { title: m.bland_suave_florian_lock, unlocalizedHref: "/cennik/" },
   { title: m.weak_weak_alpaca_list, unlocalizedHref: "/o-nas/" },
