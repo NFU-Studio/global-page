@@ -18,6 +18,13 @@ const urlPatterns = [
       ["en", "/en/"],
     ],
   },
+  {
+    pattern: "/cennik/",
+    localized: [
+      ["pl", "/cennik/"],
+      ["en", "/pricing/"],
+    ],
+  },
 ];
 
 // https://astro.build/config
