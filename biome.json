@@ -6,7 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "ignoreUnknown": false,
+    "ignoreUnknown": true,
     "includes": [
       "src/**/*",
       "tests/**/*",
@@ -16,7 +16,8 @@
       "**/biome.json",
       "!**/*.css",
       "!**/*.astro",
-      "!**/dist"
+      "!!**/dist",
+      "!!**/.astro"
     ]
   },
   "formatter": {

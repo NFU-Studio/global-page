@@ -1,0 +1,13 @@
+---
+import { PricingCalculatorForm } from "@/components/features/pricing-calculator/pricing-calculator-form";
+import Typography from "@/components/ui/Typography.astro";
+---
+
+<section class="p-rws space-y-rws">
+  <header>
+    <Typography variant={"h2"} as="h2">
+      Otrzymaj indywidualną wycenę
+    </Typography>
+  </header>
+  <PricingCalculatorForm client:idle />
+</section>
