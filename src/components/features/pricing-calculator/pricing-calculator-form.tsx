@@ -1,14 +1,16 @@
+import { useStore } from "@nanostores/react";
+import NumberFlow from "@number-flow/react";
 import {
-  Archive,
+  AlertCircleIcon,
   ChevronLeft,
   ChevronRight,
-  CreditCard,
-  FileText,
   Info,
-  Repeat,
+  Paperclip,
+  Users,
 } from "lucide-react";
 import { AnimatePresence, motion, usePresenceData } from "motion/react";
-import React, { Activity } from "react";
+import { atom, type StoreValue } from "nanostores";
+import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,13 +32,21 @@ import {
   FieldTitle,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { InputGroup, InputGroupInput } from "@/components/ui/input-group";
+import {
+  Item,
+  ItemContent,
+  ItemDescription,
+  ItemHeader,
+  ItemMedia,
+  ItemTitle,
+} from "@/components/ui/item";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { LEGAL_FORMS_KH, PRICING_DATA } from "@/data/pricing-data";
-import { calculatePrice } from "@/lib/pricing-engine";
+import { type CalculationOptions, calculatePrice } from "@/lib/pricing-engine";
 import { cn } from "@/lib/utils";
+import { $calculationOptions } from "@/stores/pricing.store";
 
 const StepWrapper = React.forwardRef(function StepWrapper(
   { children, className }: React.ComponentProps<typeof motion.div>,
@@ -78,25 +88,24 @@ const pricingTypes = [
 const PricingCalculatorFormStepType = React.forwardRef(
   function Step0(props, ref) {
     const id = React.useId();
+    const { type } = useStore($calculationOptions);
     return (
-      <>
-        <RadioGroup>
-          {pricingTypes.map(({ value, label }) => (
-            <FieldLabel
-              key={`type-step-r-i-${value}`}
-              htmlFor={`${value}-${id}`}
-            >
-              <Field orientation={"horizontal"}>
-                <FieldContent>
-                  <FieldTitle>{value}</FieldTitle>
-                  <FieldDescription>{label}</FieldDescription>
-                </FieldContent>
-                <RadioGroupItem value={value} id={`${value}-${id}`} />
-              </Field>
-            </FieldLabel>
-          ))}
-        </RadioGroup>
-      </>
+      <RadioGroup
+        value={type ?? ""}
+        onValueChange={(v) => $calculationOptions.setKey("type", v as "KH")}
+      >
+        {pricingTypes.map(({ value, label }) => (
+          <FieldLabel key={`type-step-r-i-${value}`} htmlFor={`${value}-${id}`}>
+            <Field orientation={"horizontal"}>
+              <FieldContent>
+                <FieldTitle>{value}</FieldTitle>
+                <FieldDescription>{label}</FieldDescription>
+              </FieldContent>
+              <RadioGroupItem value={value} id={`${value}-${id}`} />
+            </Field>
+          </FieldLabel>
+        ))}
+      </RadioGroup>
     );
   },
 );
@@ -104,48 +113,57 @@ const PricingCalculatorFormStepType = React.forwardRef(
 const PricingCalculatorFormStepLegalForm = React.forwardRef(
   function Step1(props, ref) {
     const id = React.useId();
+    const { legalForm } = useStore($calculationOptions);
     return (
-      <>
-        <RadioGroup>
-          {LEGAL_FORMS_KH.map((l) => (
-            <FieldLabel key={`type-step-r-i-${l}`} htmlFor={`${l}-${id}`}>
-              <Field orientation={"horizontal"}>
-                <FieldContent>
-                  <FieldTitle>{l}</FieldTitle>
-                  {/* <FieldDescription>{label}</FieldDescription> */}
-                </FieldContent>
-                <RadioGroupItem value={l} id={`${l}-${id}`} />
-              </Field>
-            </FieldLabel>
-          ))}
-        </RadioGroup>
-      </>
+      <RadioGroup
+        value={legalForm ?? ""}
+        onValueChange={(v) => $calculationOptions.setKey("legalForm", v)}
+      >
+        {LEGAL_FORMS_KH.map((l) => (
+          <FieldLabel key={`type-step-r-i-${l}`} htmlFor={`${l}-${id}`}>
+            <Field orientation={"horizontal"}>
+              <FieldContent>
+                <FieldTitle>{l}</FieldTitle>
+                {/* <FieldDescription>{label}</FieldDescription> */}
+              </FieldContent>
+              <RadioGroupItem value={l} id={`${l}-${id}`} />
+            </Field>
+          </FieldLabel>
+        ))}
+      </RadioGroup>
     );
   },
 );
 
 const PricingCalculatorFormStepIndustry = React.forwardRef((props, ref) => {
+  const { industryId } = useStore($calculationOptions);
   return (
-    <>
-      <RadioGroup>
-        {PRICING_DATA.INDUSTRIES.map(({ id, name }) => (
-          <FieldLabel key={`industry-step-${id}`} htmlFor={`industry-${id}`}>
-            <Field orientation={"horizontal"}>
-              <FieldContent>
-                <FieldTitle>{name}</FieldTitle>
-              </FieldContent>
-              <RadioGroupItem value={id} id={`industry-${id}`} />
-            </Field>
-          </FieldLabel>
-        ))}
-      </RadioGroup>
-    </>
+    <RadioGroup
+      value={industryId ?? ""}
+      onValueChange={(v) => $calculationOptions.setKey("industryId", v)}
+    >
+      {PRICING_DATA.INDUSTRIES.map(({ id, name }) => (
+        <FieldLabel key={`industry-step-${id}`} htmlFor={`industry-${id}`}>
+          <Field orientation={"horizontal"}>
+            <FieldContent>
+              <FieldTitle>{name}</FieldTitle>
+            </FieldContent>
+            <RadioGroupItem value={id} id={`industry-${id}`} />
+          </Field>
+        </FieldLabel>
+      ))}
+    </RadioGroup>
   );
 });
 
 const PricingCalculatorFormStepWithHR = React.forwardRef((props, ref) => {
-  const [wHR, setWHR] = React.useState(false);
-  const [wPFRON, setWPFRON] = React.useState(false);
+  const { employeesNoPefron, employeesPefron, partnersCount, contractors } =
+    useStore($calculationOptions);
+  const [wHR, setWHR] = React.useState(!!employeesNoPefron);
+  const [wPFRON, setWPFRON] = React.useState(!!employeesPefron);
+  const [employees, setEmployees] = React.useState(
+    (employeesNoPefron ?? 0) + (employeesPefron ?? 0),
+  );
   return (
     <>
       <FieldLabel>
@@ -155,7 +173,17 @@ const PricingCalculatorFormStepWithHR = React.forwardRef((props, ref) => {
               Czy chcesz skorzystać z obsługi kadrowo płacowej?
             </FieldTitle>
           </FieldContent>
-          <Switch onCheckedChange={setWHR} />
+          <Switch
+            checked={wHR}
+            onCheckedChange={(WHR) => {
+              setWHR(WHR);
+              const stateHRValue = WHR ? 0 : undefined;
+              $calculationOptions.setKey("employeesNoPefron", stateHRValue);
+              $calculationOptions.setKey("employeesPefron", stateHRValue);
+              $calculationOptions.setKey("contractors", stateHRValue);
+              $calculationOptions.setKey("partnersCount", stateHRValue);
+            }}
+          />
         </Field>
       </FieldLabel>
       <AnimatePresence>
@@ -164,12 +192,24 @@ const PricingCalculatorFormStepWithHR = React.forwardRef((props, ref) => {
             initial={{ height: 0 }}
             animate={{ height: "auto" }}
             exit={{ height: 0 }}
-            className={cn(wHR && "overflow-clip")}
+            className={cn(wHR && "overflow-y-clip")}
           >
             <FieldGroup className="pt-4">
               <Field orientation={"horizontal"}>
                 <FieldLabel>Podaj liczbę pracowników do rozliczenia</FieldLabel>
-                <Input />
+                <Input
+                  inputMode="numeric"
+                  pattern="/([1-9][0-9]*)|0/"
+                  value={employees}
+                  min={0}
+                  onChange={(e) => {
+                    setEmployees(+e.target.value);
+                    $calculationOptions.setKey(
+                      "employeesNoPefron",
+                      +e.target.value - +(employeesPefron ?? 0),
+                    );
+                  }}
+                />
               </Field>
               <FieldLabel>
                 <Field orientation={"horizontal"}>
@@ -179,7 +219,7 @@ const PricingCalculatorFormStepWithHR = React.forwardRef((props, ref) => {
                       dofinansowanie z PFRON?
                     </FieldTitle>
                   </FieldContent>
-                  <Switch onCheckedChange={setWPFRON} />
+                  <Switch checked={wPFRON} onCheckedChange={setWPFRON} />
                 </Field>
               </FieldLabel>
               <div className="-mt-8">
@@ -195,7 +235,23 @@ const PricingCalculatorFormStepWithHR = React.forwardRef((props, ref) => {
                         <FieldLabel>
                           Podaj liczbę pracowników objętych PFRON
                         </FieldLabel>
-                        <Input />
+                        <Input
+                          inputMode="numeric"
+                          pattern="/([1-9][0-9]*)|0/"
+                          value={employeesPefron}
+                          min={0}
+                          max={employees}
+                          onChange={(e) => {
+                            $calculationOptions.setKey(
+                              "employeesPefron",
+                              +e.target.value,
+                            );
+                            $calculationOptions.setKey(
+                              "employeesNoPefron",
+                              +employeesNoPefron - +e.target.value,
+                            );
+                          }}
+                        />
                       </Field>
                     </motion.div>
                   )}
@@ -203,13 +259,23 @@ const PricingCalculatorFormStepWithHR = React.forwardRef((props, ref) => {
               </div>
               <Field orientation={"horizontal"}>
                 <FieldLabel>Podaj liczbę zleceniobiorców</FieldLabel>
-                <Input />
+                <Input
+                  value={contractors}
+                  onChange={(e) =>
+                    $calculationOptions.setKey("contractors", +e.target.value)
+                  }
+                />
               </Field>
               <Field orientation={"horizontal"}>
                 <FieldLabel>
                   Podaj liczbę członków zarządu z prawem do wynagrodzenia
                 </FieldLabel>
-                <Input />
+                <Input
+                  value={partnersCount}
+                  onChange={(e) =>
+                    $calculationOptions.setKey("partnersCount", +e.target.value)
+                  }
+                />
               </Field>
             </FieldGroup>
           </motion.div>
@@ -220,17 +286,29 @@ const PricingCalculatorFormStepWithHR = React.forwardRef((props, ref) => {
 });
 
 function PricingCalculatorFormStepAddons() {
+  const { activeAddonIds } = useStore($calculationOptions);
+
   return (
     <FieldSet>
       <FieldGroup>
-        {PRICING_DATA.ADDONS.map(({ id, name }) => (
+        {PRICING_DATA.ADDONS.map(({ id, name, description }) => (
           <FieldLabel key={`pcfs-addon-${id}`}>
             <Field orientation={"horizontal"}>
               <FieldContent>
                 <FieldTitle>{name}</FieldTitle>
-                <FieldDescription></FieldDescription>
+                <FieldDescription>{description}</FieldDescription>
               </FieldContent>
-              <Switch />
+              <Switch
+                name={id}
+                id={id}
+                checked={activeAddonIds?.includes(id)}
+                onCheckedChange={(v) => {
+                  const newIds = v
+                    ? Array.from(new Set([...(activeAddonIds ?? []), id]))
+                    : (activeAddonIds ?? []).filter((idx) => idx !== id);
+                  $calculationOptions.setKey("activeAddonIds", newIds);
+                }}
+              />
             </Field>
           </FieldLabel>
         ))}
@@ -311,29 +389,29 @@ const DocumentDefinition = () => {
   );
 };
 
-export default DocumentDefinition;
-
 function PricingCalculatorFormStepDocsNumber() {
-  const [value, setValue] = React.useState([0]);
+  const { documentCount } = useStore($calculationOptions);
   return (
     <div className="gap-8 grid place-items-center">
       <Field>
         <FieldTitle>
           Podaj przebliżoną miesięczną liczbę dokumentów:{" "}
           <Badge size="lg" className="tabular-nums">
-            {value[0] < 101 ? value[0] : "100+"}
+            {(documentCount ?? 0) < 101 ? documentCount : "100+"}
           </Badge>
         </FieldTitle>
         <Slider
-          value={value}
-          onValueChange={setValue}
+          value={[documentCount ?? 0]}
+          onValueChange={([value]) =>
+            $calculationOptions.setKey("documentCount", value)
+          }
           min={0}
           step={10}
           max={110}
           className="mt-2 w-full"
         />
         <AnimatePresence>
-          {value[0] > 100 && (
+          {(documentCount ?? 0) > 100 && (
             <motion.div
               initial={{ height: 0 }}
               animate={{ height: "auto" }}
@@ -352,50 +430,167 @@ function PricingCalculatorFormStepDocsNumber() {
 }
 
 function PricingCalculatorFormCalculation() {
-  return <div></div>;
+  const [total, setTotal] = React.useState(0);
+  const {
+    manualQuote,
+    accountingPrice,
+    basePrice,
+    hrPrice,
+    message,
+    totalNet,
+  } = calculatePrice($calculationOptions.get()!);
+  React.useEffect(() => {
+    const t = setTimeout(() => {
+      setTotal(totalNet ?? 0);
+    }, 250);
+    return () => {
+      clearTimeout(t);
+    };
+  }, [totalNet]);
+  if (manualQuote) {
+    return (
+      <Item>
+        <ItemMedia>
+          <AlertCircleIcon />
+        </ItemMedia>
+        <ItemContent>
+          <ItemTitle>Prosimy o kontakt</ItemTitle>
+          <ItemDescription>{message}</ItemDescription>
+        </ItemContent>
+      </Item>
+    );
+  }
+  return (
+    <div className="flex flex-col gap-8">
+      <div
+        className="bg-foreground text-center text-background rounded-lg space-y-2 p-4
+      "
+      >
+        <p className="uppercase opacity-60 text-sm font-medium">Cena finalna</p>
+        <NumberFlow
+          locales={["pl-PL"]}
+          className="text-4xl font-bold"
+          trend={1}
+          transformTiming={{ duration: 750 }}
+          value={total}
+          format={{ style: "currency", currency: "PLN" }}
+        />
+      </div>
+      <Item variant={"muted"}>
+        <ItemMedia>
+          <Paperclip />
+        </ItemMedia>
+        <ItemContent>
+          <ItemTitle>Księgowość</ItemTitle>
+          <ItemDescription>
+            {new Intl.NumberFormat("pl-PL", {
+              currency: "PLN",
+              style: "currency",
+              compactDisplay: "short",
+            }).format(accountingPrice ?? 0)}
+          </ItemDescription>
+        </ItemContent>
+      </Item>
+      {(hrPrice ?? 0) > 0 && (
+        <Item variant={"muted"}>
+          <ItemMedia>
+            <Users />
+          </ItemMedia>
+          <ItemContent>
+            <ItemTitle>Kadry</ItemTitle>
+            <ItemDescription>
+              {new Intl.NumberFormat("pl-PL", {
+                style: "currency",
+                currency: "PLN",
+                compactDisplay: "short",
+              }).format(hrPrice ?? 0)}
+            </ItemDescription>
+          </ItemContent>
+        </Item>
+      )}
+    </div>
+  );
 }
 
-const stepsConfig = [
-  { component: PricingCalculatorFormStepType, title: "Wybierz rodzaj" },
+const stepsConfig: {
+  component: React.FunctionComponent;
+  title: string;
+  key?: keyof CalculationOptions;
+}[] = [
+  {
+    component: PricingCalculatorFormStepType,
+    title: "Wybierz rodzaj",
+    key: "type",
+  },
   {
     component: PricingCalculatorFormStepLegalForm,
     title: "Wybierz formę prawną",
+    key: "legalForm",
   },
   {
     component: PricingCalculatorFormStepIndustry,
     title: "Wybierz branżę",
+    key: "industryId",
   },
   {
     component: PricingCalculatorFormStepDocsNumber,
     title: "Liczba dokumentów",
+    key: "documentCount",
   },
   {
     component: PricingCalculatorFormStepAddons,
     title: "Szczególne procedury",
+    key: "activeAddonIds",
   },
   {
     component: PricingCalculatorFormStepWithHR,
     title: "Kadry",
   },
+  {
+    component: PricingCalculatorFormCalculation,
+    title: "Wycena",
+  },
 ];
 
+const $stepStore = atom<0 | 1 | 2 | 3 | 4 | 5>(0);
+const setStep = (value: StoreValue<typeof $stepStore>) => $stepStore.set(value);
+const notForwardableKeys: (keyof CalculationOptions)[] = [
+  "documentCount",
+  "activeAddonIds",
+  "employeesNoPefron",
+  "employeesPefron",
+  "contractors",
+  "partnersCount",
+];
+$calculationOptions.listen((value, old, key) => {
+  console.log(value, old, key);
+  const currentStep = $stepStore.get();
+  if (currentStep >= stepsConfig.length - 1) return;
+  if (notForwardableKeys.includes(key)) return;
+  if (!old[key] && value[key]) $stepStore.set((currentStep + 1) as 1); // validated
+});
+
 export const PricingCalculatorForm = () => {
-  const [step, setStep] = React.useState<0 | 1 | 2 | 3>(0);
+  const step = useStore($stepStore);
   const [direction, setDirection] = React.useState<-1 | 1>(1);
+  const calculationOptions = useStore($calculationOptions);
   const setSlide = (direction: -1 | 1) => {
     const newStepIdx = step + direction;
     if (newStepIdx < 0 || newStepIdx > stepsConfig.length) return;
     setDirection(direction);
-    setStep((p) => (p + direction) as 1); // check is perfromed at the top
+    setStep((step + direction) as 1); // check is perfromed at the top
   };
-  const { component: CurrentStep, title } = stepsConfig[step];
+  const { component: CurrentStep, title, key } = stepsConfig[step];
   return (
-    <Card className="mx-auto max-w-xl relative overflow-hidden">
+    <Card
+      className="mx-auto max-w-xl relative overflow-hidden"
+      data-lenis-prevent
+    >
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription></CardDescription>
       </CardHeader>
-      <CardContent className="relative h-120 overflow-x-clip overflow-y-auto">
+      <CardContent className="relative h-120 overflow-x-clip [scrollbar-gutter:stable] overflow-y-auto">
         <motion.div layout>
           <AnimatePresence initial={false} custom={direction} mode="popLayout">
             <StepWrapper key={`step-${step}`}>
@@ -409,12 +604,16 @@ export const PricingCalculatorForm = () => {
           disabled={step === 0}
           onClick={() => setSlide(-1)}
           variant={"secondary"}
+          className={cn(step === 0 && "invisible")}
         >
           <ChevronLeft />
           Poprzedni krok
         </Button>
         <Button
-          disabled={step === stepsConfig.length - 1}
+          className={cn(step === stepsConfig.length - 1 && "invisible")}
+          disabled={
+            step === stepsConfig.length - 1 || (key && !calculationOptions[key])
+          }
           onClick={() => setSlide(1)}
         >
           Następny krok

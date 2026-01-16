@@ -8,6 +8,7 @@ export type Addon = {
   id: string;
   name: string;
   modifier: number; // 0.2 = +20%
+  description: string;
 };
 
 export const PRICING_DATA = {
@@ -47,11 +48,41 @@ export const PRICING_DATA = {
   ],
 
   ADDONS: [
-    { id: "vat_proporcja", name: "Proporcja VAT", modifier: 0.1 },
-    { id: "vat_oss", name: "VAT OSS", modifier: 0.2 },
-    { id: "cash_method", name: "Metoda Kasowa", modifier: 0.2 },
-    { id: "vat_margin", name: "VAT Marża", modifier: 0.2 },
-    { id: "cit_estonski", name: "CIT Estoński", modifier: 0.2 },
+    {
+      id: "vat_proporcja",
+      name: "Proporcja VAT",
+      modifier: 0.1,
+      description:
+        "Stosowana, gdy firma prowadzi jednocześnie sprzedaż opodatkowaną i zwolnioną z VAT. Wymaga precyzyjnego wyliczania wskaźnika, według którego można odliczyć podatek od zakupów.",
+    },
+    {
+      id: "vat_oss",
+      name: "VAT OSS",
+      modifier: 0.2,
+      description:
+        "System ułatwiający rozliczanie sprzedaży zagranicznej dla konsumentów w UE. Umożliwia rozliczenie podatku VAT wszystkich krajów unijnych w jednej zbiorczej deklaracji w Polsce.",
+    },
+    {
+      id: "cash_method",
+      name: "Metoda Kasowa",
+      modifier: 0.2,
+      description:
+        "Tryb, w którym obowiązek podatkowy VAT powstaje dopiero po otrzymaniu zapłaty od klienta, co pozwala na lepsze zarządzanie płynnością finansową firmy.",
+    },
+    {
+      id: "vat_margin",
+      name: "VAT Marża",
+      modifier: 0.2,
+      description:
+        "Procedura dla handlu towarami używanymi lub usług turystycznych. Podatek VAT wyliczany jest wyłącznie od marży, a nie od pełnej kwoty sprzedaży.",
+    },
+    {
+      id: "cit_estonski",
+      name: "CIT Estoński",
+      modifier: 0.2,
+      description:
+        "Uproszczona forma opodatkowania, w której podatek płaci się dopiero w momencie wypłaty zysku ze spółki, co sprzyja inwestycjom i rozwojowi firmy.",
+    },
   ] as Addon[],
 
   HR_RATES: {

@@ -83,8 +83,8 @@ export const calculatePrice = (options: CalculationOptions) => {
   // 7. Kadry i Płace (kwoty stałe)
   const hrPrice =
     options.employeesNoPefron * PRICING_DATA.HR_RATES.employee_no_pefron +
-    options.employeesPefron * PRICING_DATA.HR_RATES.employee_pefron +
-    options.contractors * PRICING_DATA.HR_RATES.contractor;
+      options.employeesPefron * PRICING_DATA.HR_RATES.employee_pefron +
+      options.contractors * PRICING_DATA.HR_RATES.contractor || 0;
 
   return {
     basePrice,
