@@ -27,6 +27,7 @@ export const SplashBlinds = () => {
       className="size-full absolute inset-0 flex flex-col lg:flex-row"
       transition={{
         staggerChildren: 0.1,
+        delayChildren: 0.2,
       }}
     >
       {Array.from({ length: 12 }).map((_, i) => (
