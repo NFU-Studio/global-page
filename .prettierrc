@@ -1,7 +1,9 @@
 {
   "overrides": [
     {
-      "files": "*.astro",
+      "files": [
+        "*.astro"
+      ],
       "options": {
         "plugins": [
           "prettier-plugin-astro"
@@ -11,7 +13,11 @@
         "bracketSameLine": true,
         "jsxBracketSameLine": true,
         "semi": true
-      }
+      },
+      "excludeFiles": [
+        "*.ts",
+        "*.tsx"
+      ]
     }
   ]
 }

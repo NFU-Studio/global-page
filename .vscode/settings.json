@@ -15,6 +15,5 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   // UI Setting:
   // TypeScript (Native Preview) > Use Tsgo
-  "typescript.experimental.useTsgo": false,
-  "poirot.activeProject": ""
+  "typescript.experimental.useTsgo": false
 }
