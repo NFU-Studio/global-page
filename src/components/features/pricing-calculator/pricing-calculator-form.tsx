@@ -11,6 +11,7 @@ import {
 import { AnimatePresence, motion, usePresenceData } from "motion/react";
 import { atom, type StoreValue } from "nanostores";
 import React from "react";
+import { z } from "zod";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -271,10 +272,15 @@ const PricingCalculatorFormStepWithHR = React.forwardRef((props, ref) => {
                   Podaj liczbę członków zarządu z prawem do wynagrodzenia
                 </FieldLabel>
                 <Input
+                  inputMode="numeric"
                   value={partnersCount}
-                  onChange={(e) =>
-                    $calculationOptions.setKey("partnersCount", +e.target.value)
-                  }
+                  onChange={(e) => {
+                    if (z.coerce.number().safeParse(e.target.value).success)
+                      $calculationOptions.setKey(
+                        "partnersCount",
+                        +e.target.value,
+                      );
+                  }}
                 />
               </Field>
             </FieldGroup>
@@ -462,10 +468,7 @@ function PricingCalculatorFormCalculation() {
   }
   return (
     <div className="flex flex-col gap-8">
-      <div
-        className="bg-foreground text-center text-background rounded-lg space-y-2 p-4
-      "
-      >
+      <div className="bg-foreground text-center text-background rounded-lg space-y-2 p-4">
         <p className="uppercase opacity-60 text-sm font-medium">Cena finalna</p>
         <NumberFlow
           locales={["pl-PL"]}
