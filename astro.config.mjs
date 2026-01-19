@@ -22,7 +22,21 @@ const urlPatterns = [
     pattern: "/cennik/",
     localized: [
       ["pl", "/cennik/"],
-      ["en", "/pricing/"],
+      ["en", "/en/pricing/"],
+    ],
+  },
+  {
+    pattern: "/o-nas/",
+    localized: [
+      ["pl", "/o-nas/"],
+      ["en", "/en/about-us/"],
+    ],
+  },
+  {
+    pattern: "/kontakt/",
+    localized: [
+      ["pl", "/kontakt/"],
+      ["en", "/en/contact/"],
     ],
   },
 ];

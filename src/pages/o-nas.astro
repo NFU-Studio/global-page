@@ -1,0 +1,29 @@
+---
+import Head from "@/layouts/Head.astro";
+import RootLayout from "@/layouts/RootLayout.astro";
+import AboutCTA from "@/sections/about-us/AboutCTA.astro";
+import AboutGoals from "@/sections/about-us/AboutGoals.astro";
+import AboutHero from "@/sections/about-us/AboutHero.astro";
+import AboutStory from "@/sections/about-us/AboutStory.astro";
+import AboutTeam from "@/sections/about-us/AboutTeam.astro";
+import AboutValues from "@/sections/about-us/AboutValues.astro";
+import IndexTestimonials from "@/sections/index/index-testimonials.astro";
+---
+
+<RootLayout>
+  <Head
+    slot="head"
+    title="Nowoczesna Księgowość Wrocław i Online | Biuro Rachunkowe Global"
+    description="Szukasz księgowości, która wspiera Twój biznes? Oferujemy cyfrowy obieg dokumentów, doradctwo i pełne bezpieczeństwo. Sprawdź ofertę dla firm z całej Polski!"
+  />
+  <main>
+    <AboutHero />
+    <AboutStory />
+    <AboutValues />
+    <AboutGoals />
+    <AboutTeam />
+    <!-- <AboutOfferLinks /> -->
+    <IndexTestimonials />
+    <AboutCTA />
+  </main>
+</RootLayout>

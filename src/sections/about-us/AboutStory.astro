@@ -1,0 +1,84 @@
+---
+import building from "@/assets/imgs/coop.jpg";
+import Typography from "@/components/ui/Typography.astro";
+import { Image } from "astro:assets";
+import { Lightbulb, Shield, TrendingUp, Users } from "lucide-react";
+
+const story: {
+  h2: string;
+  paragraphs: string[];
+  icon: typeof Lightbulb;
+}[] = [
+  {
+    icon: Users,
+    h2: "Kim jesteśmy?",
+    paragraphs: [
+      "Nie jesteśmy tylko księgowymi. Jesteśmy architektami Twojego spokoju. Nasze biuro tworzy zespół ekspertów, dla których księgowość to nie tylko tabelki, ale przede wszystkim język biznesu.",
+      "Wspieramy przedsiębiorców z całej Polski - od startupów po rozwinięte spółki prawa handlowego. Łączymy wieloletnie doświadczenie w prowadzeniu księgowości, kadr i płac z nowoczesnym oprogramowaniem i aplikacjami. Nasz cel jest prosty: Ty zajmujesz się rozwijaniem firmy, my dbamy o to, by Twoje finanse były bezpieczne, przejrzyste i zgodne z przepisami.",
+    ],
+  },
+  {
+    icon: TrendingUp,
+    h2: "Nasza historia",
+    paragraphs: [
+      "Nasza historia zaczęła się od prostej obserwacji: przedsiębiorcy tracą zbyt wiele energii na walkę z biurokracją, zamiast inwestować ją w rozwój. Powstaliśmy, aby to zmienić.",
+      "Od pierwszego dnia działalności postawiliśmy na cyfryzację i automatyzację. Zamiast ton papieru, wybraliśmy chmurę i cyfrowy obieg dokumentów. Zamiast sztywnego, urzędniczego języka, wybraliśmy partnerstwo i dostępność. Ewoluowaliśmy wraz z potrzebami rynku, zmieniając tradycyjne podejście do księgowości w usługę, która realnie wspiera decyzje biznesowe naszych Klientów.",
+    ],
+  },
+  {
+    icon: Shield,
+    h2: "Zdejmujemy ciężar formalności z Twoich barków",
+    paragraphs: [
+      "Chcemy, aby prowadzenie firmy w Polsce było prostsze. Naszą misją jest dostarczanie rzetelnej księgowości i czytelnej komunikacji, dzięki którym odzyskasz czas i poczucie bezpieczeństwa.",
+    ],
+  },
+];
+---
+
+<section class="grid p-rws gap-rws lg:grid-cols-2">
+  <div class="grid gap-12 p-rws content-start">
+    {
+      story.map((item) => (
+        <article>
+          <div class="flex items-center gap-6 mb-4">
+            <item.icon className="size-8 text-accent" />
+            <Typography as="h2" variant="h3">
+              {" "}
+              {item.h2}{" "}
+            </Typography>
+          </div>
+          {item.paragraphs.map((paragraph, index) => (
+            <Typography mw="p" class={index > 0 ? "mt-6" : ""}>
+              {paragraph}
+            </Typography>
+          ))}
+        </article>
+      ))
+    }
+  </div>
+
+  <div class="sticky top-32 h-fit">
+    <Image
+      src={building}
+      alt="Biuro Rachunkowe Global"
+      class="rounded-lg [--ppp:1rem] lg:[--ppp:2rem] drop-shadow-[var(--ppp)_var(--ppp)_0px_var(--color-primary)]"
+      sizes="(max-width: 768px) 100vw, 50vw"
+      widths={[400, 600, 800, 1000, 1200]}
+    />
+    <div
+      class="absolute z-1 bg-linear-0 from-accent/50 to-primary mask-t-from-0% inset-0 rounded-lg">
+    </div>
+
+    <div
+      class="absolute -bottom-4 z-10 -left-4 bg-background p-6 rounded-lg shadow-xl max-w-xs">
+      <div class="flex items-center gap-4 mb-4">
+        <Lightbulb className="size-6 shrink-0 text-primary" />
+        <Typography as="h3" variant="large">Indywidualne podejście</Typography>
+      </div>
+      <Typography class="text-sm">
+        Każdego klienta traktujemy indywidualnie, dopasowując usługi do jego
+        potrzeb.
+      </Typography>
+    </div>
+  </div>
+</section>

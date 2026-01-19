@@ -1,0 +1,97 @@
+---
+import ArrowRightAnim from "@/components/ui/arrow-right-anim.astro";
+import Button from "@/components/ui/Button.astro";
+import Typography from "@/components/ui/Typography.astro";
+import {
+  Briefcase,
+  Building2,
+  Calculator,
+  FileText,
+  Scale,
+  Users,
+} from "lucide-react";
+
+const services = [
+  {
+    icon: Calculator,
+    title: "Księgowość uproszczona",
+    description: "Pełna obsługa księgowa dla małych firm i przedsiębiorców.",
+    href: "/oferta/#ksiegowosc-uproszczona",
+    color: "bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300",
+  },
+  {
+    icon: FileText,
+    title: "Księgi rachunkowe",
+    description: "Kompleksowa księgowość dla spółek prawa handlowego.",
+    href: "/oferta/#ksiegi-rachunkowe",
+    color:
+      "bg-emerald-100 text-emerald-600 dark:bg-emerald-900 dark:text-emerald-300",
+  },
+  {
+    icon: Users,
+    title: "Kadry i płace",
+    description: "Profesjonalne prowadzenie spraw pracowniczych.",
+    href: "/oferta/#kadry-i-place",
+    color: "bg-purple-100 text-purple-600",
+  },
+  {
+    icon: Building2,
+    title: "Reprezentacja przed urzędami",
+    description: "Pełnomocnictwa i wsparcie w kontaktach z US i ZUS.",
+    href: "/oferta/#reprezentacja",
+    color: "bg-orange-100 text-orange-600",
+  },
+  {
+    icon: Briefcase,
+    title: "Doradztwo biznesowe",
+    description: "Strategiczne wsparcie w rozwoju Twojej firmy.",
+    href: "/oferta/#doradztwo",
+    color: "bg-pink-100 text-pink-600",
+  },
+  {
+    icon: Scale,
+    title: "Doradztwo podatkowe",
+    description: "Optymalizacja podatkowa i planowanie finansowe.",
+    href: "/oferta/#doradztwo-podatkowe",
+    color: "bg-cyan-100 text-cyan-600",
+  },
+];
+---
+
+<section class="p-rws space-y-rws bg-muted/50">
+  <header class="text-center mb-12">
+    <Typography as="h2" variant="h2l"> Nasze usługi </Typography>
+    <Typography mw="h" class="mt-4 mx-auto">
+      Poznasz kompleksową ofertę Biura Rachunkowego Global
+    </Typography>
+  </header>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {
+      services.map(({ icon: Icon, title, description, href, color }) => (
+        <article class="bg-background p-6 rounded-lg hover:shadow-lg transition-all duration-300 group">
+          <div class="flex items-start gap-4">
+            <div class={`p-3 rounded-lg ${color} shrink-0`}>
+              <Icon className="size-6" />
+            </div>
+            <div class="flex flex-col gap-3 flex-1">
+              <Typography as="h3" variant="h3" set:html={title} />
+              <Typography variant="p" class="text-sm text-muted-foreground">
+                {description}
+              </Typography>
+            </div>
+          </div>
+          <Button
+            as="a"
+            href={href}
+            variant="ghost"
+            size="sm"
+            class="mt-4 group-hover:bg-muted w-full justify-start">
+            Dowiedz się więcej
+            <ArrowRightAnim />
+          </Button>
+        </article>
+      ))
+    }
+  </div>
+</section>

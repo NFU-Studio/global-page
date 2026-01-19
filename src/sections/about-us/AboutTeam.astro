@@ -1,0 +1,97 @@
+---
+import Typography from "@/components/ui/Typography.astro";
+import { Linkedin, Mail } from "lucide-react";
+
+const team = [
+  {
+    name: "Anna Kowalska",
+    position: "Główny Księgowy",
+    image: "https://picsum.photos/seed/anna/400/500",
+    bio: "Ekspert z 15-letnim doświadczeniem w księgowości spółek prawa handlowego.",
+  },
+  {
+    name: "Piotr Nowak",
+    position: "Doradca Podatkowy",
+    image: "https://picsum.photos/seed/piotr/400/500",
+    bio: "Specjalista od optymalizacji podatkowej i planowania finansowego.",
+  },
+  {
+    name: "Maria Wiśniewska",
+    position: "Specjalista ds. Kadr i Płac",
+    image: "https://picsum.photos/seed/maria/400/500",
+    bio: "Pasjonatka nowoczesnych rozwiązań w HR i automatyzacji procesów.",
+  },
+  {
+    name: "Tomasz Wójcik",
+    position: "Kierownik Działu Księgowości",
+    image: "https://picsum.photos/seed/tomasz/400/500",
+    bio: "Ekspert w dziedzinie cyfrowej transformacji procesów księgowych.",
+  },
+];
+---
+
+<section class="p-rws space-y-rws">
+  <header class="text-center space-y-4">
+    <Typography as="h2" variant="h2"> Poznaj nasz zespół </Typography>
+    <Typography mw="h" class="mx-auto text-center">
+      Ludzie, którzy zadbają o Twoje finanse
+    </Typography>
+  </header>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+    {
+      team.map((member) => (
+        <article class="group bg-background rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+          <div class="relative overflow-hidden">
+            <img
+              src={member.image}
+              alt={member.name}
+              class="w-full h-64 object-cover object-top group-hover:scale-105 transition-transform duration-300"
+            />
+            <div class="absolute inset-0 bg-linear-to-t from-foreground/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </div>
+
+          <div class="p-6">
+            <Typography as="h3" variant="h3" set:html={member.name} />
+            <Typography class="text-primary font-medium text-sm mt-1">
+              {member.position}
+            </Typography>
+
+            <Typography class="text-sm text-muted-foreground mt-3 line-clamp-2">
+              {member.bio}
+            </Typography>
+
+            <div class="flex items-center gap-3 mt-4 pt-4 border-t">
+              <a
+                href="#"
+                class="p-2 hover:bg-muted rounded-full transition-colors"
+                aria-label={`LinkedIn ${member.name}`}>
+                <Linkedin className="size-4" />
+              </a>
+              <a
+                href={`mailto:${member.name.toLowerCase().replace(" ", ".")}@global.pl`}
+                class="p-2 hover:bg-muted rounded-full transition-colors"
+                aria-label={`Email ${member.name}`}>
+                <Mail className="size-4" />
+              </a>
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <!-- Dołącz do nas CTA -->
+  <!-- <div
+    class="bg-linear-150 from-muted to-accent/40 *:relative w-fit p-rws mx-auto relative space-y-3 lg:space-y-6 text-center rounded-lg">
+    <FileText className="size-12 text-primary mx-auto" />
+    <Typography as="h3" variant="h3" class="mb-3">
+      Chcesz dołączyć do naszego zespołu?
+    </Typography>
+    <Typography mw="p" class={"text-balance"}>
+      Poszukujemy talentów, które podzielają naszą pasję do nowoczesnej
+      księgowości.
+    </Typography>
+    <Button as="a" href="/kontakt/"> <Mail /> Prześlij wiadomość </Button>
+  </div> -->
+</section>

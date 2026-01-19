@@ -1,0 +1,98 @@
+---
+import Typography from "@/components/ui/Typography.astro";
+import {
+  Award,
+  FileCheck,
+  GraduationCap,
+  Handshake,
+  ShieldCheck,
+} from "lucide-react";
+
+const values = [
+  {
+    icon: Award,
+    title: "Rzetelność ponad wszystko",
+    description:
+      "Działamy precyzyjnie, odpowiedzialnie i zawsze zgodnie z aktualną wiedzą. W świecie zmieniających się przepisów jesteśmy Twoim stałym punktem oparcia.",
+    color: "text-blue-500",
+  },
+  {
+    icon: FileCheck,
+    title: "Transparentność - Zasada Czystego Stołu",
+    description:
+      "Jasne umowy, brak ukrytych kosztów i zrozumiały język. U nas zawsze wiesz, za co płacisz i na jakim etapie są Twoje sprawy.",
+    color: "text-emerald-500",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Bezpieczeństwo jako tarcza",
+    description:
+      "Chronimy Twoje dane i bierzemy odpowiedzialność za nasze wyliczenia. Reprezentujemy Cię przed urzędami, byś Ty nie musiał się tym stresować.",
+    color: "text-purple-500",
+  },
+  {
+    icon: Handshake,
+    title: 'Partnerstwo, nie „Klient nr 127"',
+    description:
+      "Wierzymy w relacje. Dla nas nie jesteś kolejnym numerem w systemie, ale partnerem, którego biznes chcemy zrozumieć i wspierać.",
+    color: "text-orange-500",
+  },
+  {
+    icon: GraduationCap,
+    title: "Ciągły Rozwój",
+    description:
+      "Podatki nie stoją w miejscu, więc my też nie. Stale szkolimy zespół i wdrażamy nowe technologie, aby Twoja księgowość była zawsze o krok do przodu.",
+    color: "text-pink-500",
+  },
+];
+---
+
+<section class="p-rws *:p-rws *:relative bg-muted/50 relative">
+  <div
+    class="bg-background absolute! z-0 w-auto inset-0 h-3/4 mask-no-repeat mask-right mask-[url('/favicon.svg')]">
+  </div>
+  <header class="space-y-4">
+    <Typography as="h2" variant="h2"> Fundamenty naszego zaufania </Typography>
+    <Typography mw="h" class="opacity-60" variant={"large"}>
+      Zasady, które wyznaczają kierunek naszej codziennej pracy
+    </Typography>
+  </header>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {
+      values.map(({ icon: Icon, title, description, color }) => (
+        <article class="bg-background p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start gap-4">
+            <div class="p-3 bg-muted rounded-lg shrink-0">
+              <Icon className={`size-8 ${color}`} />
+            </div>
+            <div class="flex flex-col gap-3">
+              <Typography as="h3" variant="h3" set:html={title} />
+              <Typography variant="body" class="" set:html={description} />
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+  <div
+    data-inverted="true"
+    class="mt-16 flex flex-col bg-primary text-muted items-center justify-center gap-6 p-8 rounded-lg">
+    <div
+      class="absolute -top-11 h-12 w-1/2 bg-primary"
+      style="clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);">
+    </div>
+    <div
+      class="absolute -bottom-11 -scale-y-100 h-12 w-1/2 bg-primary"
+      style="clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);">
+    </div>
+    <ShieldCheck className="size-16" />
+    <Typography as="h3" variant="h3" class="text-center">
+      Pełna odpowiedzialność za nasze działania
+    </Typography>
+    <Typography mw="p" class="text-center">
+      Posiadamy ubezpieczenie odpowiedzialności cywilnej, które dodatkowo
+      zabezpiecza interesy naszych klientów.
+    </Typography>
+  </div>
+</section>

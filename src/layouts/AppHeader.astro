@@ -27,7 +27,10 @@ import { localizeHref } from "@/paraglide/runtime";
             <DropdownNav client:only="react" />
           ) : isHome ? null : (
             <li>
-              <Button variant={"link"} as="a" href={unlocalizedHref}>
+              <Button
+                variant={"link"}
+                as="a"
+                href={localizeHref(unlocalizedHref!)}>
                 {title}
               </Button>
             </li>

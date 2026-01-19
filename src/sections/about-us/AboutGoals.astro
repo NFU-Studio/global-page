@@ -1,0 +1,77 @@
+---
+import { TR } from "@/components/features/tr";
+import Typography from "@/components/ui/Typography.astro";
+import { MessageSquare, Users, Zap } from "lucide-react";
+
+const goals = [
+  {
+    icon: Zap,
+    number: "01",
+    title: "Automatyzacja",
+    description: "Automatyzacja eliminuje błędy ludzkie i przyspiesza procesy.",
+  },
+  {
+    icon: MessageSquare,
+    number: "02",
+    title: "Doradztwo",
+    description: "Doradztwo wyprzedza problemy, zamiast tylko je rozwiązywać.",
+  },
+  {
+    icon: Users,
+    number: "03",
+    title: "Indywidualne podejście",
+    description:
+      "Indywidualne podejście sprawia, że czujesz się zaopiekowany na każdym etapie rozwoju Twojej firmy.",
+  },
+];
+---
+
+<section class="p-rws *:p-rws">
+  <header class="mb-12">
+    <Typography as="h2" variant="h2"> Nasze cele i strategia </Typography>
+    <Typography mw="p" class="mt-4">
+      Naszą strategią jest budowanie długoterminowych relacji opartych na
+      zaufaniu i proaktywności. Dążymy do modelu księgowości 2.0, w którym:
+    </Typography>
+  </header>
+
+  <div class="grid lg:grid-cols-3 gap-8 mb-16">
+    {
+      goals.map(({ icon: Icon, number, title, description }) => (
+        <article class="relative bg-muted p-8 rounded-lg">
+          <div class="absolute -top-4 -left-4 w-12 h-12 bg-primary text-background flex items-center justify-center rounded-lg font-bold text-xl shadow-lg">
+            {number}
+          </div>
+          <div class="mt-4 flex flex-col gap-4">
+            <div class="p-3 bg-background rounded-lg w-fit">
+              <Icon className="size-8 text-primary" />
+            </div>
+            <Typography as="h3" variant="h3" set:html={title} />
+            <Typography variant="body" set:html={description} />
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <!-- Vision statement -->
+  <!-- <div
+    data-inverted="true"
+    class="bg-accent text-background p-8 md:p-12 rounded-lg relative overflow-hidden">
+    <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
+      <div class="p-4 bg-background/20 rounded-full shrink-0">
+        <Target className="size-16" />
+      </div>
+      <div class="text-center md:text-left">
+        <Typography as="h3" variant="h3" class="mb-4"> Nasza wizja </Typography>
+        <Typography mw="h">
+          Chcemy zmienić sposób, w jaki przedsiębiorcy postrzegają księgowość -
+          z konieczności w strategiczne wsparcie biznesowe. Każdego dnia
+          pracujemy nad tym, aby nasi klienci mogli skupić się na tym, co robią
+          najlepiej: rozwijaniu swoich firm.
+        </Typography>
+      </div>
+    </div>
+  </div> -->
+  <TR client:load />
+</section>

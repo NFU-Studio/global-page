@@ -35,7 +35,7 @@
     "cobe": "^0.6.5",
     "lenis": "^1.3.17",
     "lucide-react": "^0.562.0",
-    "motion": "^12.26.2",
+    "motion": "^12.27.0",
     "nanostores": "^1.1.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
@@ -46,9 +46,10 @@
     "zod": "^4.3.5"
   },
   "devDependencies": {
+    "@inlang/paraglide-js": "2.9.0",
     "prettier": "^3.8.0",
     "prettier-plugin-astro": "^0.14.1",
-    "@inlang/paraglide-js": "2.9.0"
+    "shadcn": "^3.7.0"
   },
   "trustedDependencies": [
     "@tailwindcss/oxide",

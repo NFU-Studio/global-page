@@ -1,0 +1,67 @@
+---
+import Typography from "@/components/ui/Typography.astro";
+import { Quote, Star } from "lucide-react";
+
+const testimonials = [
+  {
+    text: "Polecam 100%. Bardzo profesjonalna obsługa.",
+    author: "Marek Z.",
+    company: "Właściciel małej firmy",
+    rating: 5,
+  },
+  {
+    text: "Bardzo sprawna obsługa, bałem się zmieniać księgową po 4 latach ale warto było. Odrazu pomogli zmniejszyć podatki.",
+    author: "Katarzyna W.",
+    company: "Przedsiębiorca",
+    rating: 5,
+  },
+  {
+    text: "Polecam, bardzo dobry kontakt, szczere odpowiedzi, odrazu przedstawiają ceny za wszystkie możliwe dodatkowe usługi w przyszłości. Właściciel bardzo dobrze mi wytłumaczył wszystko przed założeniem spółki.",
+    author: "Tomasz K.",
+    company: "Wspólnik sp. z o.o.",
+    rating: 5,
+  },
+];
+---
+
+<section class="p-rws *:p-rws">
+  <header class="text-center">
+    <Typography as="h2" variant="h2l"> Co mówią o nas klienci? </Typography>
+  </header>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+    {
+      testimonials.map((testimonial) => (
+        <article class="bg-background border rounded-lg p-6 relative hover:shadow-lg transition-shadow">
+          <Quote className="absolute top-6 right-6 size-8 text-primary/20" />
+
+          <div class="flex items-center gap-1 mb-4">
+            {Array.from({ length: testimonial.rating }).map(() => (
+              <Star className="size-4 fill-yellow-400 text-yellow-400" />
+            ))}
+          </div>
+
+          <blockquote class="mb-6">
+            <Typography variant="quote" set:html={testimonial.text} />
+          </blockquote>
+
+          <footer class="flex items-center gap-3 pt-4 border-t">
+            <div class="w-12 h-12 bg-linear-to-br from-primary to-accent rounded-full flex items-center justify-center text-background font-bold">
+              {testimonial.author
+                .split(" ")
+                .map((n) => n[0])
+                .join("")}
+            </div>
+            <div>
+              <Typography class="font-semibold" set:html={testimonial.author} />
+              <Typography
+                class="text-sm text-muted-foreground"
+                set:html={testimonial.company}
+              />
+            </div>
+          </footer>
+        </article>
+      ))
+    }
+  </div>
+</section>

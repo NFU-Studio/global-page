@@ -1,0 +1,67 @@
+---
+import aboutHero from "@/assets/imgs/about-placeholder.jpg";
+import ArrowRightAnim from "@/components/ui/arrow-right-anim.astro";
+import { Badge } from "@/components/ui/badge";
+import Button from "@/components/ui/Button.astro";
+import Typography from "@/components/ui/Typography.astro";
+import { Image } from "astro:assets";
+---
+
+<section
+  data-invert-header
+  class="h-auto lg:h-screen text-background pt-32 grid size-full lg:grid-rows-[4fr_1fr] relative">
+  <Image
+    src={aboutHero}
+    alt=""
+    class="cover-img h-96 lg:h-screen z-0"
+    sizes="100vw"
+    widths={[300, 450, 600, 900, 1200, 1600, 1920]}
+    fetchpriority={"high"}
+    loading={"eager"}
+  />
+  <div
+    class="h-[50svh]! absolute w-full z-5 bg-foreground/45 mask-t-from-25% backdrop-blur-sm hidden lg:block lg:bottom-0!">
+  </div>
+  <div
+    class="cover-img lg:h-screen h-[50svh] z-1 bg-linear-0 from-accent to-foreground opacity-60">
+  </div>
+
+  <div
+    data-inverted="true"
+    class="relative mt-auto rounded-lg grid text-background z-10 lg:bg-transparent bg-accent mx-4 p-rws h-fit">
+    <div class="flex flex-col gap-6 lg:gap-8">
+      <Badge variant="outline" className="text-background">
+        Księgowość dla firm Wrocław
+      </Badge>
+      <h1 class="sr-only">O nas - Biuro Rachunkowe Global</h1>
+      <Typography
+        variant={"h2"}
+        mw="h"
+        class="leading-tight"
+        set:text={"Tu budujemy Twoje finansowe bezpieczeństwo"}
+      />
+      <Typography mw="p" class="">
+        Jesteśmy nowoczesnym biurem rachunkowym, które łączy doświadczenie z
+        technologią. Dbamy nie tylko o poprawne rozliczenia, ale także o
+        bezpieczeństwo, spokój i realne wsparcie w prowadzeniu biznesu.
+      </Typography>
+      <div class="flex items-center gap-4">
+        <Button
+          size="lg"
+          as="a"
+          href="#kontakt"
+          class={"bg-background! group/arrow text-foreground! lg:bg-foreground! lg:text-background!"}>
+          Poznaj nas lepiej
+          <ArrowRightAnim />
+        </Button>
+        <!-- <Button
+          size="lg"
+          variant="secondary"
+          class={"lg:bg-background/20! lg:text-background!"}>
+          <Play className="size-5" />
+          Obejrzyj wideo
+        </Button> -->
+      </div>
+    </div>
+  </div>
+</section>

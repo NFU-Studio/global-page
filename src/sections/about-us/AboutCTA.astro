@@ -1,0 +1,72 @@
+---
+import { ContactForm } from "@/components/features/contact-form";
+import Typography from "@/components/ui/Typography.astro";
+import { addressData } from "@/data/address";
+import { contactData } from "@/data/contact";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
+---
+
+<section
+  id="kontakt"
+  class="p-rws *:p-rws bg-accent text-background"
+  data-inverted="true">
+  <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="flex flex-col gap-8">
+      <div>
+        <Typography variant={"h2"} as="h2">
+          Chcesz dowiedzieć się więcej? Porozmawiajmy
+        </Typography>
+        <Typography mw="h" class="mt-4">
+          Skontaktuj się z nami i sprawdź, jak możemy wesprzeć Twoją firmę w
+          codziennych rozliczeniach i rozwoju.
+        </Typography>
+      </div>
+
+      <address class="flex flex-col gap-4 not-italic">
+        {
+          contactData.map((item, index) => (
+            <a
+              href={item.href}
+              class="flex items-center gap-4 p-4 bg-background/10 rounded-lg hover:bg-background/20 transition-colors">
+              {index === 0 ? (
+                <Mail className="size-6 shrink-0" />
+              ) : (
+                <Phone className="size-6 shrink-0" />
+              )}
+              <div>
+                <Typography class="font-semibold">
+                  {index === 0 ? "Email" : "Telefon"}
+                </Typography>
+                <Typography>{item.text}</Typography>
+              </div>
+            </a>
+          ))
+        }
+        {
+          addressData.map((item) => (
+            <a
+              href="https://maps.google.com/?q=Łaciarska+4,+50-104+Wrocław"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-4 p-4 bg-background/10 rounded-lg hover:bg-background/20 transition-colors">
+              <MapPin className="size-6 shrink-0" />
+              <div>
+                <Typography class="font-semibold">Adres</Typography>
+                <Typography>{item.text()}</Typography>
+              </div>
+            </a>
+          ))
+        }
+      </address>
+    </div>
+
+    <div class="bg-background p-8 rounded-lg shadow-xl text-foreground">
+      <div class="flex items-center gap-3 mb-6">
+        <Send className="size-6 text-primary" />
+        <Typography as="h3" variant="h3"> Wyślij wiadomość </Typography>
+      </div>
+
+      <ContactForm />
+    </div>
+  </div>
+</section>
