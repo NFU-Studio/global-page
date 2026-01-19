@@ -17,6 +17,7 @@ bun install        # Install dependencies
 ## Build Process
 
 The build process has two stages:
+
 1. **ParaglideJS compilation**: `paraglide-js compile --project ./project.inlang --outdir ./src/paraglide`
 2. **Astro build**: `astro build`
 
@@ -59,16 +60,19 @@ src/
 ## Component Patterns
 
 ### UI Components (`src/components/ui/`)
+
 - Built with **Radix UI** primitives + **TailwindCSS**
 - Use **Class Variance Authority (CVA)** for component variants
 - Follow shadcn/ui conventions
 - Example: Button, Slider, RadioGroup, Switch
 
 ### Feature Components
+
 - Domain-specific interactive components (typically React)
 - Example: `pricing-calculator` with real-time calculations
 
 ### Sections
+
 - Page composition units (Hero, Offer, Testimonials, etc.)
 - Can be Astro or React components
 
@@ -87,6 +91,12 @@ src/
   - Double quotes for JavaScript
   - Organize imports on save
   - Ignores: `*.css`, `*.astro`, `dist/`, `.astro/`
+
+## Conventions
+
+- `export const ComponentName = ...` ONLY this means:
+  - no "barrel" index files
+  - no `export default`
 
 ## Path Aliases
 
