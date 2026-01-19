@@ -1,0 +1,24 @@
+---
+import Head from "@/layouts/Head.astro";
+import RootLayout from "@/layouts/RootLayout.astro";
+import ContactDetails from "@/sections/contact/en/ContactDetails.astro";
+import ContactFAQ from "@/sections/contact/en/ContactFAQ.astro";
+import ContactFormSection from "@/sections/contact/en/ContactFormSection.astro";
+import ContactHero from "@/sections/contact/en/ContactHero.astro";
+import ContactMap from "@/sections/contact/en/ContactMap.astro";
+---
+
+<RootLayout>
+  <Head
+    slot="head"
+    title="Contact Accounting Office Global | Bookkeeping and Advisory Wrocław"
+    description="Contact us — call, write or visit us in Wrocław. We offer bookkeeping, HR and tax advisory for companies. We respond within 24 hours."
+  />
+  <main>
+    <ContactHero />
+    <ContactDetails />
+    <ContactFormSection />
+    <ContactMap />
+    <ContactFAQ />
+  </main>
+</RootLayout>

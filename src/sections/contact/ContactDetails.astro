@@ -1,0 +1,52 @@
+---
+import Typography from "@/components/ui/Typography.astro";
+import { addressData } from "@/data/address";
+import { contactData } from "@/data/contact";
+import { Mail, MapPin, Phone } from "lucide-react";
+
+const contactDetails = [
+  {
+    icon: MapPin,
+    label: addressData[0].text(),
+  },
+  {
+    icon: Mail,
+    label: contactData[0].text,
+    href: contactData[0].href,
+  },
+  {
+    icon: Phone,
+    label: contactData[1].text,
+    href: contactData[1].href,
+  },
+];
+---
+
+<section class="p-rws space-y-6 @container">
+  <header>
+    <Typography as="h2" variant="h3">Dane kontaktowe</Typography>
+  </header>
+
+  <div class="grid @md:grid-cols-3 gap-6">
+    {
+      contactDetails.map(({ icon: Icon, label, href }) => (
+        <a
+          href={href || "#"}
+          class:list={[
+            "flex items-center gap-4 p-6 rounded-lg border border-foreground/10",
+            "bg-background hover:border-accent transition-colors",
+            !href && "pointer-events-none",
+          ]}>
+          <div class="flex shrink-0">
+            <Icon className="size-6 text-accent" />
+          </div>
+          <span class="text-sm font-medium">{label}</span>
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="text-sm text-muted-foreground">
+    <p>Godziny otwarcia biura / godziny pracy (też online)</p>
+  </div>
+</section>

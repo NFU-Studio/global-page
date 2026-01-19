@@ -1,0 +1,55 @@
+---
+import { addressData } from "@/data/address";
+import { contactData } from "@/data/contact";
+import Mail from "~icons/lucide/mail";
+import MapPin from "~icons/lucide/map-pin";
+import Phone from "~icons/lucide/phone";
+import Typography from "@/components/ui/Typography.astro";
+
+const contactDetails = [
+  {
+    icon: MapPin,
+    label: addressData[0].text(),
+  },
+  {
+    icon: Mail,
+    label: contactData[0].text,
+    href: contactData[0].href,
+  },
+  {
+    icon: Phone,
+    label: contactData[1].text,
+    href: contactData[1].href,
+  },
+];
+---
+
+<section class="p-rws space-y-6">
+  <header>
+    <Typography as="h2" variant="h2l">Contact details</Typography>
+  </header>
+
+  <div class="grid md:grid-cols-3 gap-6">
+    {
+      contactDetails.map(({ icon: Icon, label, href }) => (
+        <a
+          href={href || "#"}
+          class:list={[
+            "flex items-center gap-4 p-6 rounded-lg border border-foreground/10",
+            "bg-background hover:border-accent transition-colors",
+            !href && "pointer-events-none",
+          ]}
+        >
+          <div class="flex-shrink-0">
+            <Icon class="size-6 text-accent" />
+          </div>
+          <span class="text-sm font-medium">{label}</span>
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="text-sm text-muted-foreground">
+    <p>Office opening hours / working hours (also online)</p>
+  </div>
+</section>

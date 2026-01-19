@@ -1,0 +1,20 @@
+---
+import { ContactForm } from "@/components/features/contact-form";
+import Typography from "@/components/ui/Typography.astro";
+---
+
+<section
+  class="space-y-6 bg-background m-[calc(var(--rws)/2)] p-[calc(var(--rws)/2)] rounded-2xl">
+  <header class="space-y-2">
+    <Typography as="h2" variant="h3">
+      Napisz do nas — odpowiemy maksymalnie w 24 godziny
+    </Typography>
+    <Typography mw="p">
+      Masz pytania dotyczące współpracy, wyceny lub konkretnej usługi księgowej?
+      Wypełnij formularz, a wrócimy do Ciebie z odpowiedzią tak szybko, jak to
+      możliwe.
+    </Typography>
+  </header>
+
+  <ContactForm client:load />
+</section>

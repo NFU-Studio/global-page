@@ -1,0 +1,26 @@
+---
+import Head from "@/layouts/Head.astro";
+import RootLayout from "@/layouts/RootLayout.astro";
+import ContactDetails from "@/sections/contact/ContactDetails.astro";
+import ContactFAQ from "@/sections/contact/ContactFAQ.astro";
+import ContactFormSection from "@/sections/contact/ContactFormSection.astro";
+import ContactHero from "@/sections/contact/ContactHero.astro";
+import ContactMap from "@/sections/contact/ContactMap.astro";
+---
+
+<RootLayout>
+  <Head
+    slot="head"
+    title="Kontakt Biuro Rachunkowe Global | Księgowość i doradztwo Wrocław"
+    description="Skontaktuj się z nami — zadzwoń, napisz lub odwiedź nas we Wrocławiu. Oferujemy księgowość, kadry i doradztwo podatkowe dla firm. Odpowiadamy w 24 godziny."
+  />
+  <div class="bg-muted mt-32 grid gap-rws lg:grid-cols-2 mx-rws rounded-3xl">
+    <div>
+      <ContactHero />
+      <ContactDetails />
+    </div>
+    <ContactFormSection />
+  </div>
+  <ContactMap />
+  <ContactFAQ />
+</RootLayout>
