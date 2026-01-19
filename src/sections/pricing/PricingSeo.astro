@@ -1,0 +1,19 @@
+---
+import Typography from "@/components/ui/Typography.astro";
+
+const seoContent = [
+  "Cennik usług księgowych w naszym biurze rachunkowym zależy od kilku głównych czynników: liczby dokumentów, formy opodatkowania, typu działalności, ilości pracowników oraz zakresu potrzebnego wsparcia. Firmy korzystające z KPiR lub ryczałtu zwykle ponoszą niższe koszty, natomiast spółki prowadzące pełną księgowość wymagają bardziej zaawansowanej obsługi, co wpływa na końcową cenę.",
+  "Stawiamy na przejrzystość - cena obejmuje nie tylko prowadzenie ksiąg, ale również konsultacje, aktualizację przepisów, analizę ryzyka i wsparcie przy bieżących decyzjach biznesowych. Dzięki temu przedsiębiorcy mają pewność, że ich księgowość jest prowadzona rzetelnie, terminowo i zgodnie z obowiązującymi regulacjami podatkowymi.",
+];
+---
+
+<section class="p-[calc(2*var(--rws))] space-y-rws">
+  <header>
+    <Typography as="h2" variant="h2l" mw="h">
+      Cennik usług księgowych - jak wyliczamy koszt obsługi?
+    </Typography>
+  </header>
+  <div class="space-y-[calc(var(--rws)/2)]">
+    {seoContent.map((paragraph) => <Typography mw="p" set:html={paragraph} />)}
+  </div>
+</section>

@@ -1,0 +1,64 @@
+---
+import Typography from "@/components/ui/Typography.astro";
+import {
+  BookOpen,
+  Building2,
+  Cloud,
+  HeadphonesIcon,
+  ShieldCheck,
+} from "lucide-react";
+
+const benefits = [
+  {
+    title: "Kompleksową obsługę księgową",
+    description:
+      "Prowadzimy księgi, wyliczamy podatki, przygotowujemy deklaracje i dbamy o terminowe rozliczenia.",
+    icon: BookOpen,
+  },
+  {
+    title: "Doświadczenie i bezpieczeństwo",
+    description:
+      "Pracujesz z zespołem posiadającym wieloletnie doświadczenie, ubezpieczenie OC oraz standaryzowane procedury księgowe.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Stałe wsparcie i doradztwo",
+    description:
+      "Informujemy o zmianach w przepisach i pomagamy podejmować decyzje podatkowe dopasowane do Twojego biznesu.",
+    icon: HeadphonesIcon,
+  },
+  {
+    title: "Reprezentację przed urzędami",
+    description:
+      "Kontakt z US i ZUS przejmujemy na siebie - oszczędzasz czas i stres.",
+    icon: Building2,
+  },
+  {
+    title: "Nowoczesne narzędzia i cyfrowe obiegi dokumentów",
+    description:
+      "Dostarczasz dokumenty online, a wszystkie dane są bezpiecznie przechowywane.",
+    icon: Cloud,
+  },
+];
+---
+
+<section class="p-rws *:p-rws relative">
+  <header class="sticky top-32 lg:top-20">
+    <Typography as="h2" variant="h2l">
+      Co otrzymujesz w ramach naszej współpracy?
+    </Typography>
+  </header>
+  <div class="grid gap-6 lg:gap-12 relative">
+    {
+      benefits.map(({ title, description, icon: Icon }) => (
+        <div class="flex flex-col h-120 sticky bg-background top-64 gap-3 lg:gap-6">
+          <div class="flex items-center gap-4">
+            <Icon className="size-12 shrink-0 text-primary" />
+            <Typography as="h3" variant="h3" set:html={title} />
+          </div>
+          <Typography mw="p" class={"text-balance"} set:html={description} />
+        </div>
+      ))
+    }
+  </div>
+</section>
