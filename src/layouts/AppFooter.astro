@@ -11,7 +11,7 @@ import { Building, Mails } from "lucide-react";
 <footer
   data-inverted="true"
   class="flex bg-foreground text-background flex-col p-rws gap-rws">
-  <div class="flex flex-col lg:flex-row items-center gap-8">
+  <div class="flex flex-col lg:flex-row lg:items-center gap-8">
     <div>
       <a href={localizeHref("/")}>
         <span class="sr-only">HOME PAGE</span>
@@ -19,26 +19,30 @@ import { Building, Mails } from "lucide-react";
       </a>
     </div>
     <address
-      class="not-italic flex items-center [&_svg]:relative [&_svg]:-right-4 [&_svg]:text-background/80 w-full justify-end gap-8">
-      <Building className="size-8" />
-      <ul>
-        {
-          addressData.map(({ text }) => (
-            <Typography as="li" set:html={text().split(",").join("<br/>")} />
-          ))
-        }
-      </ul>
-      <div class="p-px h-8 bg-muted-foreground"></div>
-      <Mails className="size-8" />
-      <ul>
-        {
-          contactData.map(({ href, text }) => (
-            <Typography as="li">
-              <a {href}>{text}</a>
-            </Typography>
-          ))
-        }
-      </ul>
+      class="not-italic grid md:flex md:items-center [&_svg]:text-background/80 w-full md:justify-end gap-8">
+      <div class="flex items-center gap-4">
+        <Building className="size-8" />
+        <ul>
+          {
+            addressData.map(({ text }) => (
+              <Typography as="li" set:html={text().split(",").join("<br/>")} />
+            ))
+          }
+        </ul>
+      </div>
+      <div class="p-px h-8 bg-muted-foreground hidden md:block"></div>
+      <div class="flex items-center gap-4">
+        <Mails className="size-8" />
+        <ul>
+          {
+            contactData.map(({ href, text }) => (
+              <Typography as="li">
+                <a {href}>{text}</a>
+              </Typography>
+            ))
+          }
+        </ul>
+      </div>
     </address>
   </div>
   <div class="flex items-center lg:justify-end">
