@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -31,6 +31,7 @@ export function ContactForm() {
     handleSubmit,
     formState: { errors, isSubmitted },
     reset,
+    control,
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -71,7 +72,7 @@ export function ContactForm() {
             id="name"
             {...register("name")}
             aria-invalid={!!errors.name}
-            className="h-12 px-4 transition-colors focus-visible:ring-offset-0"
+            className="h-12 scroll-mt-32 px-4 transition-colors focus-visible:ring-offset-0"
           />
           {errors.name && <FieldError>{errors.name.message}</FieldError>}
         </Field>
@@ -84,7 +85,7 @@ export function ContactForm() {
               type="tel"
               {...register("phone")}
               aria-invalid={!!errors.phone}
-              className="h-12 px-4 transition-colors focus-visible:ring-offset-0"
+              className="h-12 px-4 scroll-mt-32 transition-colors focus-visible:ring-offset-0"
             />
             {errors.phone && <FieldError>{errors.phone.message}</FieldError>}
           </Field>
@@ -96,7 +97,7 @@ export function ContactForm() {
               type="email"
               {...register("email")}
               aria-invalid={!!errors.email}
-              className="h-12 px-4 transition-colors focus-visible:ring-offset-0"
+              className="h-12 scroll-mt-32 px-4 transition-colors focus-visible:ring-offset-0"
             />
             {errors.email && <FieldError>{errors.email.message}</FieldError>}
           </Field>
@@ -108,35 +109,42 @@ export function ContactForm() {
             {...register("message")}
             aria-invalid={!!errors.message}
             rows={4}
-            className="resize-none transition-colors focus-visible:ring-offset-0"
+            className="resize-none scroll-mt-32 transition-colors focus-visible:ring-offset-0"
           />
           {errors.message && <FieldError>{errors.message.message}</FieldError>}
         </Field>
-
-        <Field orientation={"horizontal"} data-invalid={!!errors.rodo}>
-          <Checkbox
-            id="rodo"
-            {...register("rodo")}
-            aria-invalid={!!errors.rodo}
-          />
-          <FieldContent className="flex flex-col gap-1">
-            <FieldLabel
-              htmlFor="rodo"
-              className="text-sm leading-tight cursor-pointer peer-data-[invalid=true]:text-destructive transition-colors"
-            >
-              Wyrażam zgodę na przetwarzanie moich danych osobowych
-            </FieldLabel>
-            <FieldDescription>
-              w celu udzielenia odpowiedzi na przesłane zapytanie zgodnie z
-              polityką prywatności.
-            </FieldDescription>
-          </FieldContent>
-          {errors.rodo && (
-            <FieldError className="col-span-full">
-              {errors.rodo.message}
-            </FieldError>
+        <Controller
+          control={control}
+          name="rodo"
+          render={({ field, fieldState: { error, invalid } }) => (
+            <Field orientation={"horizontal"} data-invalid={invalid}>
+              <Checkbox
+                id="rodo"
+                className="scroll-mt-32"
+                aria-invalid={invalid}
+                checked={field.value}
+                onCheckedChange={field.onChange}
+              />
+              <FieldContent className="flex flex-col gap-1">
+                <FieldLabel
+                  htmlFor="rodo"
+                  className="text-sm  leading-tight cursor-pointer peer-data-[invalid=true]:text-destructive transition-colors"
+                >
+                  Wyrażam zgodę na przetwarzanie moich danych osobowych
+                </FieldLabel>
+                <FieldDescription>
+                  w celu udzielenia odpowiedzi na przesłane zapytanie zgodnie z
+                  polityką prywatności.
+                </FieldDescription>
+              </FieldContent>
+              {error && (
+                <FieldError className="col-span-full">
+                  {error.message}
+                </FieldError>
+              )}
+            </Field>
           )}
-        </Field>
+        ></Controller>
       </FieldGroup>
 
       <Button
