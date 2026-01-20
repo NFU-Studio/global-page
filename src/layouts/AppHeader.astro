@@ -13,7 +13,7 @@ import { localizeHref } from "@/paraglide/runtime";
   class:list={[
     "flex isolate justify-between text-black z-50 lg:grid lg:grid-cols-[1fr_10fr_1fr]",
     "px-rws h-32 place-items-center-safe fixed left-0 top-0 w-screen",
-    "data-[scrolled='true']:bg-background/15 data-[scrolled='true']:backdrop-blur-md",
+    "data-[scrolled='true']:bg-background/15 data-[scrolled='true']:backdrop-blur-md transition",
   ]}>
   <a href={localizeHref("/")}>
     <Logo class="h-8" />
@@ -30,6 +30,7 @@ import { localizeHref } from "@/paraglide/runtime";
               <Button
                 variant={"link"}
                 as="a"
+                class="text-inherit!"
                 href={localizeHref(unlocalizedHref!)}>
                 {title}
               </Button>
@@ -59,7 +60,7 @@ import { localizeHref } from "@/paraglide/runtime";
       "header[data-slot='app-header']",
     ) as HTMLDivElement;
     scroll((progress, info) => {
-      const isLower = info.y.current > window.innerHeight;
+      const isLower = info.y.current > 192;
       ah.dataset.scrolled = isLower + "";
     });
   })();
@@ -85,9 +86,9 @@ import { localizeHref } from "@/paraglide/runtime";
         }
 
         if (intersectingCount > 0) {
-          h.classList.add("invert");
+          h.classList.add("text-white!");
         } else {
-          h.classList.remove("invert");
+          h.classList.remove("text-white!");
         }
       },
       {

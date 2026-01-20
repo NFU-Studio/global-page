@@ -18,7 +18,7 @@ export const DropdownNav = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant={"link"}>
+        <Button variant={"link"} className="text-inherit!">
           {title()} <ChevronDown />
         </Button>
       </DropdownMenuTrigger>
