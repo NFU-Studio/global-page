@@ -1,7 +1,11 @@
 ---
+import { spring } from "motion";
 import { ChevronDown } from "lucide-react";
 import Typography from "@/components/ui/Typography.astro";
 import { contactFaqData } from "@/data/contact-faq";
+import { generateFAQPageJSON_LD } from "@/lib/structured-data";
+
+const structuredData = generateFAQPageJSON_LD(contactFaqData);
 ---
 
 <script>
@@ -31,11 +35,11 @@ import { contactFaqData } from "@/data/contact-faq";
   });
 </script>
 
-<style>
+<style define:vars={{ springTiming: spring(0.4, 0.26) }}>
   [data-faq-content] {
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows 250ms ease-out;
+    transition: grid-template-rows var(--springTiming);
   }
 
   [data-faq-item][data-faq-open="true"] [data-faq-content] {
@@ -47,7 +51,7 @@ import { contactFaqData } from "@/data/contact-faq";
   }
 
   [data-faq-icon] {
-    transition: transform 250ms ease-out;
+    transition: transform var(--springTiming);
   }
 
   [data-faq-icon][data-rotated="true"] {
@@ -55,11 +59,13 @@ import { contactFaqData } from "@/data/contact-faq";
   }
 </style>
 
-<section class="p-rws space-y-6">
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+<section class="p-rws space-y-6 grid lg:grid-cols-2 gap-rws">
   <header>
-    <Typography as="h2" variant="h2l"
-      >FAQ — najczęściej zadawane pytania</Typography
-    >
+    <Typography as="h2" variant="h2l">
+      FAQ — najczęściej zadawane pytania
+    </Typography>
   </header>
 
   <div class="space-y-3">
@@ -71,13 +77,13 @@ import { contactFaqData } from "@/data/contact-faq";
           class="border border-foreground/10 rounded-lg bg-background overflow-hidden">
           <button
             data-faq-button
-            class="w-full flex items-center justify-between p-5 text-left hover:bg-foreground/5 transition-colors">
+            class="w-full flex items-center justify-between p-5 text-left focus-within:bg-foreground/5 hover:bg-foreground/5 transition-colors">
             <span class="font-medium pr-4">{item.q}</span>
-            <ChevronDown data-faq-icon class="size-5 flex-shrink-0" />
+            <ChevronDown data-faq-icon className="size-5 shrink-0" />
           </button>
           <div data-faq-content>
-            <div data-faq-content-inner class="px-5 pb-5">
-              <Typography mw="p" class="text-muted-foreground">
+            <div data-faq-content-inner class="">
+              <Typography mw="p" class="text-muted-foreground p-5">
                 {item.a}
               </Typography>
             </div>
