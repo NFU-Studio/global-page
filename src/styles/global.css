@@ -134,4 +134,9 @@
   .maplibregl-popup-tip {
     @apply hidden!;
   }
+  input,
+  textarea,
+  select {
+    scroll-margin-top: 8rem;
+  }
 }

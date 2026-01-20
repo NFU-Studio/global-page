@@ -41,7 +41,7 @@ export function ContactForm() {
       message: "",
       rodo: false,
     },
-    mode: "onTouched",
+    mode: "onSubmit",
   });
 
   const onSubmit = async (data: ContactFormValues) => {
@@ -74,7 +74,7 @@ export function ContactForm() {
             aria-invalid={!!errors.name}
             className="h-12 scroll-mt-32 px-4 transition-colors focus-visible:ring-offset-0"
           />
-          {errors.name && <FieldError>{errors.name.message}</FieldError>}
+          <FieldError>{errors.name?.message}</FieldError>
         </Field>
 
         <FieldSet className="lg:flex-row">
@@ -87,7 +87,7 @@ export function ContactForm() {
               aria-invalid={!!errors.phone}
               className="h-12 px-4 scroll-mt-32 transition-colors focus-visible:ring-offset-0"
             />
-            {errors.phone && <FieldError>{errors.phone.message}</FieldError>}
+            <FieldError>{errors.phone?.message}</FieldError>
           </Field>
 
           <Field data-invalid={!!errors.email}>
@@ -99,7 +99,7 @@ export function ContactForm() {
               aria-invalid={!!errors.email}
               className="h-12 scroll-mt-32 px-4 transition-colors focus-visible:ring-offset-0"
             />
-            {errors.email && <FieldError>{errors.email.message}</FieldError>}
+            <FieldError>{errors.email?.message}</FieldError>
           </Field>
         </FieldSet>
         <Field data-invalid={!!errors.message}>
@@ -111,7 +111,7 @@ export function ContactForm() {
             rows={4}
             className="resize-none scroll-mt-32 transition-colors focus-visible:ring-offset-0"
           />
-          {errors.message && <FieldError>{errors.message.message}</FieldError>}
+          <FieldError>{errors?.message?.message}</FieldError>
         </Field>
         <Controller
           control={control}
@@ -137,11 +137,9 @@ export function ContactForm() {
                   polityką prywatności.
                 </FieldDescription>
               </FieldContent>
-              {error && (
-                <FieldError className="col-span-full">
-                  {error.message}
-                </FieldError>
-              )}
+              <FieldError className="col-span-full">
+                {error?.message}
+              </FieldError>
             </Field>
           )}
         ></Controller>
