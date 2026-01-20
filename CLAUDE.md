@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Planning
+
+Always try to create less verbose, concise plans, don't care much for grammar as long as plan is precise and as concise as possible.
+
 ## Package Manager
 
 This project uses **Bun** as the package manager (evident from `bun.lock`). Always use `bun` commands:
@@ -97,6 +101,7 @@ src/
 - `export const ComponentName = ...` ONLY this means:
   - no "barrel" index files
   - no `export default`
+- create only one set of components - do not translate until asked to
 
 ## Path Aliases
 
