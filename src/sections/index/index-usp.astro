@@ -42,9 +42,9 @@ const usps = [
             "relative flex p-4 flex-col gap-3 lg:gap-6 items-center text-center",
             // (i === 0 || i === 3) && "lg:col-span-2",
           ]}>
-          <Svg class={"w-fit max-h-32 "} />
+          <Svg class={"w-min max-w-full max-h-32"} />
           <Typography as="h3" variant="h3" set:html={h3} />
-          <Typography set:html={p} class="mw-sm text-balance" />
+          <Typography set:html={p} class="text-balance" />
         </div>
       ))
     }
