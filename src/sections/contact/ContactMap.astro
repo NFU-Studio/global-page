@@ -1,9 +1,10 @@
 ---
+import { MapWithGoogleLink } from "@/components/features/MapWithGoogleLink";
 import Typography from "@/components/ui/Typography.astro";
-import { Map } from "lucide-react";
+import { addressData } from "@/data/address";
+import { MapIcon } from "lucide-react";
 
-const address = "Łaciarska 4/405, 50-104 Wrocław, Poland";
-const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addressData.at(0).text())}`;
 ---
 
 <section class="p-rws space-y-6">
@@ -18,24 +19,14 @@ const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURICompo
 
   <div
     class="relative rounded-lg overflow-hidden border border-foreground/10 h-[400px]">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2561.0!2d17.03!3d51.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTEsMCBNIiAwNyc!5e0!3m2!1spl!2spl!4v1600000000000!5m2!1spl!2spl"
-      width="100%"
-      height="100%"
-      style="border: 0"
-      allowfullscreen
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      title="Mapa lokalizacji biura"
-      class="absolute inset-0"></iframe>
-
+    <MapWithGoogleLink client:idle />
     <a
       href={mapUrl}
       target="_blank"
       rel="noopener noreferrer"
-      class="absolute bottom-4 right-4 bg-background text-foreground px-4 py-2 rounded-md shadow-lg flex items-center gap-2 hover:bg-accent transition-colors text-sm font-medium z-10">
+      class="absolute top-4 right-4 bg-background text-foreground px-4 py-2 rounded-md shadow-lg flex items-center gap-2 hover:bg-accent transition-colors text-sm font-medium z-10">
       Otwórz w Google Maps
-      <Map className="size-4" />
+      <MapIcon className="size-4" />
     </a>
   </div>
 </section>
