@@ -18,8 +18,8 @@ const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURICompo
   </header>
 
   <div
-    class="relative rounded-lg overflow-hidden border border-foreground/10 h-[400px]">
-    <MapWithGoogleLink client:idle />
+    class="relative rounded-lg overflow-hidden border border-foreground/10 h-100">
+    <MapWithGoogleLink client:visible />
     <a
       href={mapUrl}
       target="_blank"

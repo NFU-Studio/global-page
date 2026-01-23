@@ -1,0 +1,28 @@
+---
+import { ContactForm } from "@/components/features/contact-form";
+import Typography from "@/components/ui/Typography.astro";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<section
+  id="formularz"
+  class="p-rws space-y-8 bg-muted rounded-3xl scroll-mt-32">
+  <header class="space-y-4 text-center">
+    <Typography as="h2" variant="h2">
+      {title}
+    </Typography>
+    <Typography mw="p" class:list={"mx-auto"}>
+      {description}
+    </Typography>
+  </header>
+
+  <div class="max-w-xl mx-auto bg-background/50 shadow p-6 rounded-lg">
+    <ContactForm client:load />
+  </div>
+</section>

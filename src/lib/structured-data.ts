@@ -16,7 +16,9 @@ export type FAQPageStructuredData = {
   }>;
 };
 
-export function generateFAQPageJSON_LD(faqItems: FAQItem[]): FAQPageStructuredData {
+export function generateFAQPageJSON_LD(
+  faqItems: FAQItem[],
+): FAQPageStructuredData {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",

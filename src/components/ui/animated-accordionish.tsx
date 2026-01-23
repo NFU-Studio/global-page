@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { cn } from "@/lib/utils";
 import * as m from "@/paraglide/messages";
+
 const services = [
   {
     id: 1,

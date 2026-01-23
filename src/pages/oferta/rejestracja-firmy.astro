@@ -1,0 +1,27 @@
+---
+import Head from "@/layouts/Head.astro";
+import RootLayout from "@/layouts/RootLayout.astro";
+import OfferHero from "@/sections/offer/OfferHero.astro";
+import OfferServices from "@/sections/offer/OfferServices.astro";
+import OfferPricing from "@/sections/offer/OfferPricing.astro";
+import OfferProcess from "@/sections/offer/OfferProcess.astro";
+import OfferForm from "@/sections/offer/OfferForm.astro";
+import { offerData } from "@/data/offer";
+
+const data = offerData.rejestracjaFirmy;
+---
+
+<RootLayout>
+	<Head
+		slot="head"
+		title="Rejestracja Firmy | Biuro Rachunkowe Global"
+		description="Założymy Twoją firmę szybko i bezbłędnie. Pomoc w rejestracji JDG i spółek, wybór formy opodatkowania, zgłoszenia do VAT i ZUS. Skorzystaj z ulgi na start."
+	/>
+	<main class="space-y-24">
+		<OfferHero {...data.hero} scrollTargetId="zakres-uslug" />
+		<OfferServices {...data.services} />
+		<OfferPricing {...data.pricing} />
+		<OfferProcess {...data.process} />
+		<OfferForm {...data.form} />
+	</main>
+</RootLayout>

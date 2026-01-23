@@ -1,0 +1,43 @@
+---
+import Typography from "@/components/ui/Typography.astro";
+
+interface Step {
+	title: string;
+	description: string;
+}
+
+interface Props {
+	title: string;
+	description: string;
+	steps: Step[];
+}
+
+const { title, description, steps } = Astro.props;
+---
+
+<section class="p-rws space-y-8">
+	<header class="space-y-4">
+		<Typography as="h2" variant="h2">
+			{title}
+		</Typography>
+		<Typography mw="p">
+			{description}
+		</Typography>
+	</header>
+
+	<ol class="space-y-6 @md:flex @md:flex-col @md:gap-8">
+		{steps.map((step, index) => (
+			<li class="flex gap-4 @md:flex-1">
+				<span class="flex shrink-0 items-center justify-center w-10 h-10 rounded-full bg-accent text-accent-foreground font-bold">
+					{index + 1}
+				</span>
+				<div>
+					<h3 class="font-semibold text-lg mb-2">{step.title}</h3>
+					<Typography mw="p" class="text-muted-foreground">
+						{step.description}
+					</Typography>
+				</div>
+			</li>
+		))}
+	</ol>
+</section>

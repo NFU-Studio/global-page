@@ -1,0 +1,65 @@
+---
+import Typography from "@/components/ui/Typography.astro";
+import { contactData } from "@/data/contact";
+import { Phone } from "lucide-react";
+
+interface ServiceItem {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  services: ServiceItem[];
+  ctaText?: string;
+  ctaPhone?: boolean;
+}
+
+const { title, description, services, ctaText, ctaPhone } = Astro.props;
+---
+
+<section id="zakres-uslug" class="p-rws @container scroll-mt-32 space-y-8">
+  <header class="space-y-4">
+    <Typography as="h2" variant="h2">
+      {title}
+    </Typography>
+    <Typography mw="p">
+      {description}
+    </Typography>
+  </header>
+
+  <div class="grid @md:grid-cols-2 gap-8">
+    {
+      services.map((service) => (
+        <article class="space-y-3 p-6 rounded-lg border border-foreground/10 bg-card">
+          <h3 class="text-xl font-semibold">{service.title}</h3>
+          <Typography mw="p" class="text-muted-foreground">
+            {service.description}
+          </Typography>
+        </article>
+      ))
+    }
+  </div>
+
+  {
+    ctaText && (
+      <div class="sticky bottom-4 z-10 @md:hidden">
+        {ctaPhone ? (
+          <a
+            href={`tel:${contactData[1].href.replace("tel:", "")}`}
+            class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-accent text-accent-foreground rounded-lg font-medium shadow-lg">
+            <Phone className="size-5" />
+            {ctaText}
+          </a>
+        ) : (
+          <a
+            href="#formularz"
+            class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-accent text-accent-foreground rounded-lg font-medium shadow-lg">
+            {ctaText}
+          </a>
+        )}
+      </div>
+    )
+  }
+</section>

@@ -4,7 +4,6 @@ import {
   Building,
   CheckCircle2,
   FileText,
-  Paperclip,
   TrendingUp,
   Users,
 } from "lucide-react";

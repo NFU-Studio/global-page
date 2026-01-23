@@ -6,6 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { navData } from "@/data/nav";
@@ -27,7 +28,7 @@ export const MobileDropdownNav = () => {
         align="end"
       >
         <DropdownMenuGroup>
-          {navData.map(
+          {[...navData].map(
             ({ unlocalizedHref, title }) =>
               unlocalizedHref && (
                 <DropdownMenuItem
@@ -38,6 +39,18 @@ export const MobileDropdownNav = () => {
               ),
           )}
         </DropdownMenuGroup>
+        <DropdownMenuLabel>Oferta</DropdownMenuLabel>
+        {(navData.find(({ children }) => !!children)?.children ?? []).map(
+          ({ unlocalizedHref, title }) =>
+            unlocalizedHref && (
+              <DropdownMenuItem
+                key={`mob-nav-${title().toString().toLowerCase()}`}
+              >
+                <a href={localizeHref(unlocalizedHref)}>{title()}</a>
+              </DropdownMenuItem>
+            ),
+        )}
+        <DropdownMenuGroup></DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   );

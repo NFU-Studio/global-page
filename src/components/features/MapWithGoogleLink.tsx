@@ -5,6 +5,7 @@ import {
   MarkerTooltip,
 } from "@/components/ui/map";
 
+import "maplibre-gl/dist/maplibre-gl.css";
 export const MapWithGoogleLink = () => {
   return (
     <Map center={[17.035206299999995, 51.10823444723654]} zoom={15}>

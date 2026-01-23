@@ -1,0 +1,77 @@
+---
+import { Button } from "@/components/ui/button";
+import Typography from "@/components/ui/Typography.astro";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+
+interface Props {
+  title: string;
+  price: string;
+  linkText: string;
+  linkHref: string;
+  additionalInfo: string;
+  benefits: string[];
+  buttonText: string;
+}
+
+const {
+  title,
+  price,
+  linkText,
+  linkHref,
+  additionalInfo,
+  benefits,
+  buttonText,
+} = Astro.props;
+---
+
+<section class="p-rws space-y-8 bg-muted rounded-3xl">
+  <header class="space-y-4">
+    <Typography as="h2" variant="h2">
+      {title}
+    </Typography>
+    <p class="text-3xl font-bold text-accent">
+      {price}
+    </p>
+    <a
+      href={linkHref}
+      class="text-accent hover:underline inline-flex items-center gap-1">
+      {linkText}
+      <ArrowRight className="size-4" />
+    </a>
+  </header>
+
+  <Typography mw="p" class="text-muted-foreground">
+    {additionalInfo}
+  </Typography>
+
+  <ul class="space-y-3">
+    {
+      benefits.map((benefit) => (
+        <li class="flex items-start gap-3">
+          <CheckCircle2 className="size-5 text-accent shrink-0 mt-0.5" />
+          <span>{benefit}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <Button size="lg" className="w-full md:w-auto" data-scroll-btn="formularz">
+    {buttonText}
+  </Button>
+</section>
+<script is:inline>
+  function main() {
+    const btns = document.querySelectorAll("button[data-scroll-btn]");
+    for (const btn of btns) {
+      btn.addEventListener("click", () => {
+        console.log("btn");
+        const idTarget = btn.dataset.scrollBtn ?? "formularz";
+        document
+          .getElementById(idTarget)
+          ?.scrollIntoView({ behavior: "smooth" });
+      });
+    }
+  }
+
+  main();
+</script>

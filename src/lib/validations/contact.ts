@@ -20,11 +20,9 @@ export const contactFormSchema = z.object({
     .string()
     .min(10, "Wiadomość musi mieć co najmniej 10 znaków.")
     .max(1000, "Wiadomość może mieć maksymalnie 1000 znaków."),
-  rodo: z
-    .boolean()
-    .refine((val) => val === true, {
-      message: "Musisz wyrazić zgodę na przetwarzanie danych.",
-    }),
+  rodo: z.boolean().refine((val) => val === true, {
+    message: "Musisz wyrazić zgodę na przetwarzanie danych.",
+  }),
 });
 
 export type ContactFormValues = z.infer<typeof contactFormSchema>;

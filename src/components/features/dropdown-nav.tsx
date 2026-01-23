@@ -28,7 +28,7 @@ export const DropdownNav = () => {
             (el) =>
               el.unlocalizedHref &&
               !el?.children && (
-                <DropdownMenuItem key={`dm-${el.title}`}>
+                <DropdownMenuItem key={`dm-${el.title}`} asChild>
                   <a href={localizeHref(el.unlocalizedHref)}>{el.title()}</a>
                 </DropdownMenuItem>
               ),

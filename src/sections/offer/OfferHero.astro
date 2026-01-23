@@ -1,0 +1,75 @@
+---
+import { Button } from "@/components/ui/button";
+import Typography from "@/components/ui/Typography.astro";
+import { ArrowRight } from "lucide-react";
+
+interface Props {
+  overline: string;
+  title: string;
+  description: string;
+  buttonText: string;
+  scrollTargetId?: string;
+}
+
+const { overline, title, description, buttonText, scrollTargetId } =
+  Astro.props;
+---
+
+<section
+  data-offer-hero
+  class="p-rws space-y-6 text-center *:mx-auto mt-32 relative">
+  <div
+    data-gradient-bg
+    class:list={[
+      "absolute size-full opacity-15 blur-2xl inset-0 z-0 pointer-events-none",
+    ]}
+    aria-hidden="true">
+  </div>
+  <p class="text-sm font-medium text-accent uppercase tracking-wider">
+    {overline}
+  </p>
+  <Typography as="h1" variant="headline">
+    {title}
+  </Typography>
+  <Typography mw="p" class="text-base lg:text-xl">
+    {description}
+  </Typography>
+  <Button
+    variant="secondary"
+    size="lg"
+    className="mx-auto"
+    data-scroll-btn={scrollTargetId}>
+    {buttonText}
+    <ArrowRight className="ml-2 size-4" />
+  </Button>
+</section>
+<style>
+  [data-offer-hero] > *:not([data-gradient-bg]) {
+    position: relative;
+    z-index: 1;
+  }
+  [data-gradient-bg] {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary) 0%,
+      var(--color-accent) 25%,
+      var(--color-background) 50%,
+      var(--color-foreground) 75%,
+      var(--color-accent) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 30s infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+</style>
