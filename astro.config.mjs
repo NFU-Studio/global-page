@@ -64,7 +64,7 @@ const urlPatterns = [
     pattern: "/oferta/rejestracja-firmy/",
     localized: [
       ["pl", "/oferta/rejestracja-firmy/"],
-      ["en", "/en/offer/company-registracion/"],
+      ["en", "/en/offer/company-registration/"],
     ],
   },
 ];
