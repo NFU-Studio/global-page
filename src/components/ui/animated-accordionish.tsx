@@ -29,7 +29,7 @@ const services = [
     description: m.misty_bold_bullock_spin(),
     icon: File,
     buttonTextTemplate: m.broad_mad_tuna_peek(),
-    href: "/oferta/",
+    href: "/oferta/obsluga-ksiegowa/",
   },
   {
     id: 2,
@@ -44,7 +44,7 @@ const services = [
     description: m.sour_bright_jackdaw_pet(),
     icon: Compass,
     buttonTextTemplate: m.noisy_lost_cat_quiz(),
-    href: "/oferta/",
+    href: "/oferta/doradztwo-podatkowe/",
   },
   {
     id: 3,
@@ -59,7 +59,7 @@ const services = [
     description: m.these_crazy_koala_loop(),
     icon: Handshake,
     buttonTextTemplate: m.wide_shy_slug_reap(),
-    href: "/oferta/",
+    href: "/oferta/sprzedaz-gotowych-spolek/",
   },
   {
     id: 4,
@@ -74,7 +74,7 @@ const services = [
     description: m.this_giant_ray_hike(),
     icon: ClipboardCheck, // Suggested new icon for registration
     buttonTextTemplate: m.due_weak_pelican_hug(),
-    href: "/oferta/",
+    href: "/oferta/rejestracja-firmy/",
   },
 ];
 export const AnimatedAccodrionish = () => {
