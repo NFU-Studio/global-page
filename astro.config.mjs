@@ -39,6 +39,34 @@ const urlPatterns = [
       ["en", "/en/contact/"],
     ],
   },
+  {
+    pattern: "/oferta/obsluga-ksiegowa/",
+    localized: [
+      ["pl", "/oferta/obsluga-ksiegowa/"],
+      ["en", "/en/offer/accounting/"],
+    ],
+  },
+  {
+    pattern: "/oferta/doradztwo-podatkowe/",
+    localized: [
+      ["pl", "/oferta/doradztwo-podatkowe/"],
+      ["en", "/en/offer/tax-consulting/"],
+    ],
+  },
+  {
+    pattern: "/oferta/sprzedaz-gotowych-spolek/",
+    localized: [
+      ["pl", "/oferta/sprzedaz-gotowych-spolek/"],
+      ["en", "/en/offer/sale-of-ready-made-companies/"],
+    ],
+  },
+  {
+    pattern: "/oferta/rejestracja-firmy/",
+    localized: [
+      ["pl", "/oferta/rejestracja-firmy/"],
+      ["en", "/en/offer/company-registracion/"],
+    ],
+  },
 ];
 
 // https://astro.build/config
