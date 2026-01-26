@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/item";
 import { PRICING_DATA } from "@/data/pricing-data";
 import { type CalculationOptions, calculatePrice } from "@/lib/pricing-engine";
+import * as m from "@/paraglide/messages";
 import { $calculationOptions } from "@/stores/pricing.store";
 
 const formatPrice = (value: number) =>
@@ -59,7 +60,7 @@ export function PricingCalculatorFormStepCalculation() {
           <AlertCircleIcon />
         </ItemMedia>
         <ItemContent>
-          <ItemTitle>Prosimy o kontakt</ItemTitle>
+          <ItemTitle>{m.broad_zesty_hyena_type()}</ItemTitle>
           <ItemDescription>{result.message}</ItemDescription>
         </ItemContent>
       </Item>
@@ -119,17 +120,17 @@ export function PricingCalculatorFormStepCalculation() {
     employeeNoPefron: {
       count: optionsTyped.employeesNoPefron,
       rate: PRICING_DATA.HR_RATES.employee_no_pefron,
-      label: "Pracownicy (bez PFRON)",
+      label: m.suave_aware_slug_slide(),
     },
     employeePefron: {
       count: optionsTyped.employeesPefron,
       rate: PRICING_DATA.HR_RATES.employee_pefron,
-      label: "Pracownicy (z PFRON)",
+      label: m.icy_mealy_warbler_mend(),
     },
     contractor: {
       count: optionsTyped.contractors,
       rate: PRICING_DATA.HR_RATES.contractor,
-      label: "Zleceniobiorcy",
+      label: m.gray_tame_snake_leap(),
     },
   };
 
@@ -152,7 +153,7 @@ export function PricingCalculatorFormStepCalculation() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
             <FileText className="size-5" />
-            Księgowość
+            {m.stout_merry_lemming_borrow()}
           </CardTitle>
           <CardDescription>
             {optionsTyped.type === "KH" ? "Księga handlowa" : "KPiR"} •{" "}
@@ -165,14 +166,14 @@ export function PricingCalculatorFormStepCalculation() {
             <Item variant="muted" size="sm">
               <ItemContent>
                 <ItemHeader>
-                  <ItemTitle>Cena bazowa</ItemTitle>
+                  <ItemTitle>{m.sleek_crazy_capybara_glow()}</ItemTitle>
                   <ItemTitle className="font-semibold">
                     {formatPrice(result.basePrice!)}
                   </ItemTitle>
                 </ItemHeader>
                 <ItemDescription>
                   {range?.min}–{range?.max === "infinity" ? "∞" : range?.max}{" "}
-                  dokumentów/miesiąc
+                  {m.salty_empty_gadfly_believe()}
                 </ItemDescription>
               </ItemContent>
             </Item>
@@ -187,7 +188,7 @@ export function PricingCalculatorFormStepCalculation() {
                   </ItemMedia>
                   <ItemContent>
                     <ItemHeader>
-                      <ItemTitle>Branża</ItemTitle>
+                      <ItemTitle>{m.gray_spicy_meerkat_hunt()}</ItemTitle>
                       <ItemTitle className="text-orange-600 dark:text-orange-400 font-semibold">
                         +{formatPercent(industryModifier)}
                       </ItemTitle>
@@ -208,13 +209,13 @@ export function PricingCalculatorFormStepCalculation() {
                   </ItemMedia>
                   <ItemContent>
                     <ItemHeader>
-                      <ItemTitle>Wspólnicy</ItemTitle>
+                      <ItemTitle>{m.weary_dirty_crow_value()}</ItemTitle>
                       <ItemTitle className="text-orange-600 dark:text-orange-400 font-semibold">
                         +{formatPercent(partnersModifier)}
                       </ItemTitle>
                     </ItemHeader>
                     <ItemDescription>
-                      {optionsTyped.partnersCount} wspólników
+                      {optionsTyped.partnersCount} {m.great_salty_ant_comfort()}
                     </ItemDescription>
                   </ItemContent>
                 </Item>
@@ -231,7 +232,7 @@ export function PricingCalculatorFormStepCalculation() {
                   </ItemMedia>
                   <ItemContent>
                     <ItemHeader>
-                      <ItemTitle>Szczególne procedury</ItemTitle>
+                      <ItemTitle>{m.odd_upper_flea_sway()}</ItemTitle>
                       <ItemTitle className="text-orange-600 dark:text-orange-400 font-semibold">
                         +{formatPercent(Math.min(addonsModifier, 0.4))}
                       </ItemTitle>
@@ -260,7 +261,7 @@ export function PricingCalculatorFormStepCalculation() {
               <ItemContent>
                 <ItemHeader>
                   <ItemTitle className="font-semibold">
-                    Razem księgowość
+                    {m.mean_born_squirrel_inspire()}
                   </ItemTitle>
                   <ItemTitle className="text-green-600 dark:text-green-400 font-bold">
                     {formatPrice(result.accountingPrice!)}
@@ -268,7 +269,7 @@ export function PricingCalculatorFormStepCalculation() {
                 </ItemHeader>
                 {totalPercentageModifier > 0 && (
                   <ItemDescription>
-                    Suma modyfikatorów: +
+                    {m.white_drab_polecat_emerge()}
                     {formatPercent(totalPercentageModifier)}
                   </ItemDescription>
                 )}
@@ -284,7 +285,7 @@ export function PricingCalculatorFormStepCalculation() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
               <Users className="size-5" />
-              Kadry i Płace
+              {m.quick_fancy_donkey_loop()}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -317,7 +318,9 @@ export function PricingCalculatorFormStepCalculation() {
                 </ItemMedia>
                 <ItemContent>
                   <ItemHeader>
-                    <ItemTitle className="font-semibold">Razem kadry</ItemTitle>
+                    <ItemTitle className="font-semibold">
+                      {m.shy_still_shad_fond()}
+                    </ItemTitle>
                     <ItemTitle className="text-green-600 dark:text-green-400 font-bold">
                       {formatPrice(result.hrPrice!)}
                     </ItemTitle>

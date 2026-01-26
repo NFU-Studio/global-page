@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { Badge } from "@/components/ui/badge";
 import { Field, FieldError, FieldTitle } from "@/components/ui/field";
 import { Slider } from "@/components/ui/slider";
+import * as m from "@/paraglide/messages";
 import { $calculationOptions } from "@/stores/pricing.store";
 import { DocumentDefinition } from "../components";
 
@@ -12,7 +13,7 @@ function PricingCalculatorFormStepDocsNumber() {
     <div className="gap-8 grid place-items-center">
       <Field>
         <FieldTitle>
-          Podaj przebliżoną miesięczną liczbę dokumentów:{" "}
+          {m.aware_odd_hamster_favor()}{" "}
           <Badge size="lg" className="tabular-nums">
             {(documentCount ?? 0) < 101 ? documentCount : "100+"}
           </Badge>

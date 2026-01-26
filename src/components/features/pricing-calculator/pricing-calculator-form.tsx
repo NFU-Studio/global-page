@@ -12,6 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import * as m from "@/paraglide/messages";
 import { $calculationOptions } from "@/stores/pricing.store";
 import { StepWrapper } from "./components";
 import { stepsConfig } from "./config";
@@ -54,7 +55,7 @@ export const PricingCalculatorForm = () => {
           className={cn(step === 0 && "invisible")}
         >
           <ChevronLeft />
-          Poprzedni krok
+          {m.sour_spare_tapir_grow()}
         </Button>
         <Button
           className={cn(step === stepsConfig.length - 1 && "invisible")}
@@ -63,7 +64,7 @@ export const PricingCalculatorForm = () => {
           }
           onClick={() => setSlide(1)}
         >
-          Następny krok
+          {m.smug_acidic_worm_gulp()}
           <ChevronRight />
         </Button>
       </CardFooter>

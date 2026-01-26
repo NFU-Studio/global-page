@@ -1,6 +1,7 @@
 ---
 import Head from "@/layouts/Head.astro";
 import RootLayout from "@/layouts/RootLayout.astro";
+import * as m from "@/paraglide/messages";
 import PricingAccounting from "@/sections/pricing/PricingAccounting.astro";
 import PricingBenefits from "@/sections/pricing/PricingBenefits.astro";
 import PricingHero from "@/sections/pricing/PricingHero.astro";
@@ -10,8 +11,8 @@ import PricingSeo from "@/sections/pricing/PricingSeo.astro";
 <RootLayout>
   <Head
     slot="head"
-    title="Cennik usług księgowych - wycena, kalkulator | Biuro Rachunkowe GLOBAL"
-    description="Poznaj nasz przejrzysty cennik usług księgowych. Sprawdź orientacyjne ceny, skorzystaj z kalkulatora i zamów indywidualną wycenę dopasowaną do Twojej firmy."
+    title={m.smart_fun_mouse_quiz()}
+    description={m.fine_jolly_shark_clasp()}
   />
   <PricingHero />
   <PricingAccounting />
