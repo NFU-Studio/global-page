@@ -3,6 +3,7 @@ import teamImg from "@/assets/imgs/team-placeholder.jpg";
 import ArrowRightAnim from "@/components/ui/arrow-right-anim.astro";
 import Button from "@/components/ui/Button.astro";
 import Typography from "@/components/ui/Typography.astro";
+import * as m from "@/paraglide/messages";
 import { Image } from "astro:assets";
 ---
 
@@ -12,18 +13,15 @@ import { Image } from "astro:assets";
       <Typography
         as="h2"
         variant={"h2"}
-        set:text={"Poznaj ludzi, którzy zadbają o Twoje finanse"}
+        set:text={m.arable_simple_gecko_hug()}
       />
     </header>
-    <Typography
-      mw="p"
-      set:text={"Za Biurem Rachunkowym Global stoją eksperci, dla których rzetelność, terminowość i profesjonalizm są fundamentem współpracy z klientami. Zobacz, kto będzie wspierał rozwój Twojej firmy na co dzień."}
-    />
+    <Typography mw="p" set:text={m.loved_frail_platypus_create()} />
     <Button
       class={"w-fit"}
       as="a"
       href="/o-nas/"
-      set:text={"Poznaj nas lepiej"}>
+      set:text={m.fine_tired_walrus_imagine()}>
       <ArrowRightAnim />
     </Button>
   </div>

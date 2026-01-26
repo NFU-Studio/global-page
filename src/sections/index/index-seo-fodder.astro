@@ -2,6 +2,7 @@
 import c0 from "@/assets/imgs/hero.jpg";
 import wroImg from "@/assets/imgs/wro.jpg";
 import Typography from "@/components/ui/Typography.astro";
+import * as m from "@/paraglide/messages";
 import { Image } from "astro:assets";
 const fodders = [
   {
@@ -9,32 +10,28 @@ const fodders = [
       src: c0,
       alt: "PLACEHOLDER",
     },
-    h2: "Biuro rachunkowe dla firm - profesjonalne usługi księgowe i kadrowe",
+    h2: m.round_quiet_ant_loop(),
     paragraphs: [
-      "Profesjonalne usługi księgowe, rzetelne prowadzenie ksiąg rachunkowych, kompleksowa obsługa kadr i płac oraz stałe wsparcie podatkowe - to filary działania Biura Rachunkowego Global. Obsługujemy jednoosobowe działalności, mikrofirmy oraz spółki, zapewniając prowadzenie ksiąg handlowych, KPiR, ryczałtu, rozliczeń VAT, CIT, PIT, JPK oraz reprezentację przed urzędami.",
-      "Wykorzystujemy nowoczesne narzędzia online, dzięki którym przekazywanie dokumentów jest szybkie i bezpieczne, a finanse firmy dostępne są w czasie rzeczywistym. W ramach obsługi kadrowo-płacowej prowadzimy dokumentację pracowników, przygotowujemy umowy, listy płac i zgłoszenia ZUS. Doradzamy w wyborze optymalnej formy opodatkowania, analizujemy koszty i wspieramy przedsiębiorców na każdym etapie rozwoju.",
+      m.minor_shy_moth_pet(),
+      m.minor_raw_parrot_rest(),
       "Nasze biuro działa transparentnie, terminowo i zgodnie z aktualnymi przepisami, zapewniając bezpieczeństwo podatkowe i pełen komfort współpracy. To dlatego klienci zostają z nami na lata.",
     ],
   },
   {
     img: {
       src: wroImg,
-      alt: "Widok z lotu ptaka na wrocławski rynek.",
+      alt: m.level_lost_crossbill_exhale(),
     },
-    h2: "Dobra księgowość Wrocław – rzetelne wsparcie dla przedsiębiorców",
-    paragraphs: [
-      "Wrocław jest jednym z najszybciej rozwijających się miast w Polsce, dlatego wybór odpowiedniego partnera finansowego ma dziś ogromne znaczenie. Nasze biuro rachunkowe Wrocław to miejsce stworzone z myślą o przedsiębiorcach, którzy oczekują rzetelności, transparentności oraz wsparcia na każdym etapie rozwoju firmy. Jako biuro rachunkowe z wieloletnim doświadczeniem zapewniamy kompleksowe usługi rachunkowe, pełną obsługę księgową oraz doradztwo dostosowane do specyfiki działalności.",
-    ],
+    h2: m.lost_crisp_mallard_climb(),
+    paragraphs: [m.best_minor_felix_play()],
   },
   {
     img: {
       src: c0,
       alt: "PLACEHOLDER",
     },
-    h2: "Kompleksowe usługi księgowe dla firm i jednoosobowych działalności",
-    paragraphs: [
-      "Nasze usługi księgowe kierujemy do jednoosobowych działalności, spółek oraz firm rozwijających swoje struktury. Oferujemy także usługi rachunkowe Wrocław dla przedsiębiorców, którzy potrzebują zarówno stałej współpracy, jak i jednorazowego wsparcia przy rozliczeniach. Wrocław to miejsce, w którym działamy od lat — dlatego znamy lokalną specyfikę biznesu, a nasze biuro cieszy się bardzo dobrą opinią wśród klientów. Jako wrocławskie biuro rachunkowe dbamy o to, by prowadzenie księgowości było proste, bezpieczne i zgodne z aktualnymi przepisami.",
-    ],
+    h2: m.curly_swift_pigeon_advise(),
+    paragraphs: [m.swift_short_cow_drop()],
   },
 ];
 ---

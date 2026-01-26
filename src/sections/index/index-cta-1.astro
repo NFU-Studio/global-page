@@ -1,5 +1,6 @@
 ---
 import Button from "@/components/ui/Button.astro";
+import * as m from "@/paraglide/messages";
 import Typography from "@/components/ui/Typography.astro";
 ---
 
@@ -17,17 +18,17 @@ import Typography from "@/components/ui/Typography.astro";
       as="h2"
       class={"leading-tight font-black tracking-wider text-shadow-lg text-shadow-primary"}
       variant={"h2"}
-      set:html={"Zacznij współpracę <br/> z pewnym partnerem biznesowym"}
+      set:html={m.lucky_crisp_turtle_radiate()}
     />
   </header>
   <Typography
     mw="h"
     variant={"quote"}
     class={"text-shadow-lg text-shadow-primary"}
-    set:text={"Masz pytania lub potrzebujesz wyceny? Skontaktuj się z nami - pomożemy dobrać najlepszy zakres usług dla Twojej firmy."}
+    set:text={m.strong_awful_gadfly_fetch()}
   />
   <Button variant={"secondary"} size="lg" as="a" href="/kontakt/">
-    Skontaktuj się z nami
+    {m.tired_dirty_turtle_fade()}
   </Button>
   <canvas
     id="globe-cobe"

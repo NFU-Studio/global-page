@@ -4,26 +4,27 @@ import conferenceCall from "@/assets/svgs/undraw_conference-call_ccsp.svg";
 import experts from "@/assets/svgs/undraw_experts_v2vy.svg";
 import upToDate from "@/assets/svgs/undraw_up-to-date_o0j3.svg";
 import Typography from "@/components/ui/Typography.astro";
+import * as m from "@/paraglide/messages";
 const usps = [
   {
     svg: experts,
-    h3: "Dedykowany Ekspert",
-    p: "Zawsze rozmawiasz z&nbsp;tą samą osobą, która zna specyfikę Twojej działalności. Brak przekierowań.",
+    h3: m.safe_flaky_parakeet_grin(),
+    p: m.lofty_neat_goose_hope(),
   },
   {
     svg: upToDate,
-    h3: "Bezpieczeństwo i&nbsp;Aktualność",
-    p: "Pełne ubezpieczenie OC i zespół stale monitorujący zmieniające się przepisy. Twoja firma jest zawsze chroniona.",
+    h3: m.acidic_zesty_skunk_cook(),
+    p: m.silly_brave_marlin_treasure(),
   },
   {
     svg: conferenceCall,
-    h3: "Elastyczność Komunikacji",
-    p: "Dostosowujemy się do Twoich preferencji: spotkanie w&nbsp;biurze, wideokonferencja, telefon. Wybór należy do Ciebie.",
+    h3: m.proud_sea_tortoise_forgive(),
+    p: m.trick_sea_niklas_gaze(),
   },
   {
     svg: bookmarks,
-    h3: "Efektywna Organizacja Pracy",
-    p: "Korzystamy z&nbsp;nowoczesnych narzędzi, aby nasze procesy były szybkie i&nbsp;bezbłędne, niezależnie od formy dokumentów.",
+    h3: m.trick_extra_elk_leap(),
+    p: m.bad_grand_seahorse_succeed(),
   },
 ];
 ---
@@ -31,7 +32,7 @@ const usps = [
 <section class="p-rws *:p-rws">
   <header>
     <Typography as="h2" variant={"h2l"}>
-      Dlaczego warto wybrać nasze biuro rachunkowe?
+      {m.noisy_trick_insect_sew()}
     </Typography>
   </header>
   <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-12">
